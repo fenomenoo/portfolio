@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gbolahan Lawal — Python Automation Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #EDEAE1;
+    --bg-soft: #E4E0D5;
+    --ink: #1F1E1D;
+    --ink-soft: #3D3B37;
+    --muted: #87847C;
+    --line: #D2CEC2;
+    --coral: #2F5E4E;
+    --coral-dark: #1F4236;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(240, 238, 230, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; max-width: 1100px; margin: 0 auto; }
+  .logo { font-family: 'Instrument Serif', serif; font-size: 24px; font-style: italic; text-decoration: none; color: var(--ink); }
+  .logo-dot { color: var(--coral); }
+  .nav-links { display: flex; gap: 28px; list-style: none; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--coral); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* HERO */
+  .hero { padding: 80px 0 120px; position: relative; }
+  .availability {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ink-soft);
+    margin-bottom: 32px; padding: 6px 14px;
+    background: var(--bg-soft); border-radius: 99px; border: 1px solid var(--line);
+  }
+  .dot-pulse { width: 8px; height: 8px; background: #5a9d5a; border-radius: 50%; position: relative; }
+  .dot-pulse::after { content: ''; position: absolute; inset: -4px; background: #5a9d5a; border-radius: 50%; opacity: 0.4; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.6); opacity: 0; } }
+
+  h1.hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(52px, 9vw, 112px); line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 32px; }
+  h1.hero-title em { color: var(--coral); font-style: italic; }
+  .hero-sub { font-size: 20px; color: var(--ink-soft); max-width: 620px; line-height: 1.55; margin-bottom: 48px; }
+  @media (max-width: 640px) { .hero-sub { font-size: 17px; } .hero { padding: 48px 0 80px; } }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line);
+    max-width: 720px;
+  }
+  .metric-num {
+    font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1;
+    color: var(--coral); letter-spacing: -1px;
+  }
+  .metric-label {
+    font-size: 12px; color: var(--muted); margin-top: 8px;
+    text-transform: uppercase; letter-spacing: 0.8px;
+  }
+  @media (max-width: 700px) {
+    .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .metric-num { font-size: 36px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 22px; border-radius: 99px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; border: 1px solid transparent; cursor: pointer;
+  }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-primary:hover { background: var(--coral); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  .hero-decoration {
+    position: absolute; right: -40px; top: 80px;
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 14px; color: var(--muted);
+    writing-mode: vertical-rl; letter-spacing: 0.15em;
+  }
+  @media (max-width: 900px) { .hero-decoration { display: none; } }
+
+  /* SECTIONS */
+  section { padding: 96px 0; border-top: 1px solid var(--line); }
+  @media (max-width: 640px) { section { padding: 64px 0; } }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 24px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
+
+  .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(36px, 5.5vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .section-title em { color: var(--coral); font-style: italic; }
+  .section-intro { font-size: 18px; color: var(--ink-soft); max-width: 620px; margin-bottom: 56px; }
+
+  .case-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px; padding: 40px 0; border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .case-stat { padding: 8px 0; }
+  .case-num {
+    font-family: 'Instrument Serif', serif; font-size: 72px; line-height: 1;
+    color: var(--coral); letter-spacing: -1.5px; margin-bottom: 12px;
+  }
+  .case-label {
+    font-size: 15px; color: var(--ink); font-weight: 500; margin-bottom: 6px;
+  }
+  .case-detail {
+    font-size: 13px; color: var(--muted); line-height: 1.5;
+  }
+  .case-note {
+    margin-top: 32px; font-size: 14px; color: var(--muted); font-style: italic;
+  }
+  @media (max-width: 700px) {
+    .case-num { font-size: 56px; }
+  }
+
+  /* FEATURED CARDS */
+  .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+  .featured-card {
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 18px; padding: 32px;
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden; min-height: 340px;
+  }
+  .featured-card:hover { transform: translateY(-4px); border-color: var(--coral); box-shadow: 0 20px 40px -20px rgba(31, 30, 29, 0.15); }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .card-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: var(--coral); }
+  .card-badge { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; background: var(--coral); color: var(--bg); font-weight: 500; }
+  .card-badge.alt { background: transparent; color: var(--coral); border: 1px solid var(--coral); }
+
+  .featured-card h3 { font-family: 'Instrument Serif', serif; font-size: 28px; line-height: 1.1; margin-bottom: 12px; }
+  .featured-card p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin-bottom: 20px; flex-grow: 1; }
+
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 99px; color: var(--ink-soft); }
+
+  .card-link { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 15px; color: var(--coral); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+  .featured-card:hover .card-link { gap: 12px; }
+
+  /* WORKFLOW LIST */
+  .work-grid { display: flex; flex-direction: column; }
+  .work-item {
+    display: grid; grid-template-columns: 60px 1fr auto;
+    gap: 24px; padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start; transition: padding 0.3s; position: relative;
+  }
+  .work-item:hover { padding-left: 12px; }
+  .work-item::before { content: '→'; position: absolute; left: -20px; top: 32px; color: var(--coral); opacity: 0; transition: opacity 0.3s; font-size: 14px; }
+  .work-item:hover::before { opacity: 1; }
+
+  .work-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--muted); padding-top: 6px; }
+  .work-body h3 { font-family: 'Instrument Serif', serif; font-size: 24px; line-height: 1.15; margin-bottom: 8px; }
+  .work-body p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; max-width: 540px; margin-bottom: 14px; }
+  .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .work-meta { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--muted); padding-top: 10px; text-align: right; white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    .work-item { grid-template-columns: 30px 1fr; gap: 16px; }
+    .work-meta { grid-column: 2; text-align: left; padding-top: 0; }
+    .work-body h3 { font-size: 20px; }
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .about-text p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 20px; }
+  .about-text p:first-child::first-letter { font-family: 'Instrument Serif', serif; font-size: 64px; float: left; line-height: 0.9; padding: 6px 10px 0 0; color: var(--coral); }
+  .about-text blockquote {
+    border-left: 2px solid var(--coral); padding-left: 20px;
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 22px; line-height: 1.4; color: var(--ink);
+    margin: 28px 0;
+  }
+
+  .stack-block { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
+  .stack-block h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 500; }
+  .stack-block h4:not(:first-child) { margin-top: 24px; }
+  .stack-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-list li { font-size: 13px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 99px; color: var(--ink-soft); }
+
+  /* CONTACT */
+  .contact { text-align: center; padding: 120px 0 80px; }
+  .contact .section-title { font-size: clamp(44px, 8vw, 96px); margin-bottom: 24px; }
+  .contact-email {
+    display: inline-block; font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: clamp(22px, 3.8vw, 34px); color: var(--coral); text-decoration: none;
+    border-bottom: 1px solid var(--coral); padding-bottom: 4px;
+    transition: color 0.2s; word-break: break-all;
+  }
+  .contact-email:hover { color: var(--coral-dark); }
+
+  .socials { display: flex; justify-content: center; gap: 24px; margin-top: 48px; font-size: 14px; color: var(--ink-soft); flex-wrap: wrap; }
+  .socials a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .socials a:hover { border-bottom-color: var(--coral); }
+
+  /* FOOTER */
+  footer { padding: 32px 0; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--muted); }
+  footer em { font-family: 'Instrument Serif', serif; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">Gbolahan<span class="logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#case-study">Case study</a></li>
+      <li><a href="#workflows">Workflows</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" style="border-top: none; padding-top: 60px;">
+  <div class="container">
+    <div class="availability reveal">
+      <span class="dot-pulse"></span>
+      Open to remote roles, freelance & short-term contracts
+    </div>
+    <h1 class="hero-title reveal">
+      Automation<br />
+      that actually <em>ships.</em>
+    </h1>
+    <p class="hero-sub reveal">
+      I'm Gbolahan — an automation developer specializing in Python, n8n,
+      Make.com, and Zapier. I build lead generation engines, outreach pipelines,
+      and AI-powered SEO systems that turn weeks of manual work into quiet,
+      running software. Code when it counts. No-code when it's faster.
+    </p>
+    <div class="hero-cta reveal">
+      <a href="#featured" class="btn btn-primary">See my work →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-metrics reveal">
+      <div class="metric">
+        <div class="metric-num">297</div>
+        <div class="metric-label">companies processed</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">144</div>
+        <div class="metric-label">outreach emails sent</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">5</div>
+        <div class="metric-label">cities targeted</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">2</div>
+        <div class="metric-label">meetings booked</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-decoration">— Portfolio / 2026 —</div>
+</section>
+
+<section id="featured">
+  <div class="container">
+    <div class="eyebrow reveal">Featured work</div>
+    <h2 class="section-title reveal">Built from <em>scratch.</em></h2>
+    <p class="section-intro reveal">
+      Production systems I designed, coded, and shipped end-to-end.
+      Python, Claude API, Flask — and a lot of late nights.
+    </p>
+
+    <div class="featured-grid">
+
+      <a href="https://rank-forge.netlify.app/" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">01</div>
+          <span class="card-badge">Live product</span>
+        </div>
+        <h3>RankForge — AI SEO Growth Engine</h3>
+        <p>An autonomous SEO system I built from scratch. Connects to Google Search Console, surfaces every keyword one push from page one, runs AI competitor analysis via Claude, writes brand-trained content, and loops weekly — without you. Productized at three tiers: $500 setup, $1,200/mo, and $2,000/mo autonomous.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">GSC API</span>
+          <span class="tag">Jinja2</span>
+          <span class="tag">Typer CLI</span>
+        </div>
+        <span class="card-link">Visit rank-forge.netlify.app →</span>
+      </a>
+
+      <a href="https://github.com/fenomenoo/brand-deal-machine" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">02</div>
+          <span class="card-badge alt">Open source</span>
+        </div>
+        <h3>Brand Deal Machine</h3>
+        <p>End-to-end brand outreach automation for content creators. Discovers brands by niche via web scraping, generates personalized 3-email pitch sequences with Claude, sends via Gmail SMTP, and auto follow-ups on Day 3 and Day 7. Full Flask dashboard plus an 8-command CLI. Tracks every brand from first contact to deal closed.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">Flask</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">BeautifulSoup</span>
+        </div>
+        <span class="card-link">View on GitHub →</span>
+      </a>
+
+      <a href="https://github.com/fenomenoo/lead-generation-ai" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">03</div>
+          <span class="card-badge alt">In production</span>
+        </div>
+        <h3>Lead Generation AI</h3>
+        <p>Full-stack B2B outreach engine. Scrapes companies from Google Maps with Playwright, enriches decision-maker emails via Snov.io + Prospeo, writes personalized sequences with Claude, sends via Gmail SMTP, and tracks every touch in a Flask dashboard. <strong>Real traction: 297 companies processed across 5 cities, 144 outreach emails sent, 4 qualified replies, 2 discovery meetings booked.</strong></p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Playwright</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">Snov.io</span>
+        </div>
+        <span class="card-link">View on GitHub →</span>
+      </a>
+
+      <a href="https://github.com/fenomenoo/remotion-studio" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">04</div>
+          <span class="card-badge alt">Open source</span>
+        </div>
+        <h3>Remotion Studio</h3>
+        <p>A programmatic animated marketing video — 7 scenes, 50 seconds — built entirely in code. Spring physics animations, count-up stats, SVG graphics, audio sync. Code-driven video as an alternative to After Effects for repeatable, version-controlled brand content.</p>
+        <div class="card-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Remotion</span>
+        </div>
+        <span class="card-link">View on GitHub →</span>
+      </a>
+
+      <div class="featured-card reveal" style="cursor: default;">
+        <div class="card-header">
+          <div class="card-num">05</div>
+          <span class="card-badge">Live product</span>
+        </div>
+        <h3>Client Machine — SaaS Landing Page</h3>
+        <p>Full responsive SaaS marketing website built around my lead generation service. Tab-based booking with a Calendly embed and a manual form fallback, a live stats dashboard mockup, toast notification system, and smooth scroll UX. Designed to convert cold visitors into discovery calls.</p>
+        <div class="card-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Calendly API</span>
+        </div>
+        <span class="card-link" style="opacity: 0.4;">Static site — deployed</span>
+      </div>
+
+      <a href="https://github.com/fenomenoo/rag-demo" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">06</div>
+          <span class="card-badge alt">Open source</span>
+        </div>
+        <h3>RAG Pipeline</h3>
+        <p>Production-readable retrieval-augmented generation system. Ingest PDFs and TXT files, chunk and embed locally with <em>sentence-transformers</em> (no external embedding API), store vectors in ChromaDB, then query in plain English — Claude answers strictly from your documents, no hallucination from outside the corpus.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">sentence-transformers</span>
+          <span class="tag">FastAPI</span>
+        </div>
+        <span class="card-link">View on GitHub →</span>
+      </a>
+
+      <a href="https://github.com/fenomenoo/sec-bdc-extractor" target="_blank" rel="noopener" class="featured-card reveal">
+        <div class="card-header">
+          <div class="card-num">07</div>
+          <span class="card-badge alt">Open source</span>
+        </div>
+        <h3>SEC BDC Extractor</h3>
+        <p>Python data pipeline for financial analysts. Pulls Business Development Company filings directly from SEC EDGAR monthly datasets and extracts NAV, NII, dividends, debt/equity ratios, and portfolio metrics into structured output — ready for modeling or comparison without touching a PDF manually.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SEC EDGAR</span>
+          <span class="tag">Data Pipeline</span>
+          <span class="tag">Financial Data</span>
+        </div>
+        <span class="card-link">View on GitHub →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="case-study">
+  <div class="container">
+    <div class="eyebrow reveal">Live case study</div>
+    <h2 class="section-title reveal">From cold email to <em>discovery call.</em></h2>
+    <p class="section-intro reveal">
+      A real campaign running right now — no fabricated numbers, no stock testimonials. Here's what the Lead Generation system has actually produced over the last 60 days.
+    </p>
+
+    <div class="case-grid reveal">
+      <div class="case-stat">
+        <div class="case-num">297</div>
+        <div class="case-label">Companies scraped &amp; enriched</div>
+        <div class="case-detail">Lagos, London, Manchester, Birmingham, New York</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-num">144</div>
+        <div class="case-label">Cold emails sent</div>
+        <div class="case-detail">Personalized by Claude, sent via Gmail SMTP</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-num">4</div>
+        <div class="case-label">Qualified replies</div>
+        <div class="case-detail">UpperMark Solutions · Digital Drew SEM · Cedarwood Digital · Digital Glue</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-num">2</div>
+        <div class="case-label">Discovery meetings booked</div>
+        <div class="case-detail">1 active negotiation — Loom demo delivered, proposal pending</div>
+      </div>
+    </div>
+
+    <p class="case-note reveal">
+      System runs daily: scrape → enrich → write → send → follow up on Day 3 and Day 7. Dashboard tracks every touch.
+    </p>
+  </div>
+</section>
+
+<section id="workflows">
+  <div class="container">
+    <div class="eyebrow reveal">Workflow automations</div>
+    <h2 class="section-title reveal">Running on <em>autopilot.</em></h2>
+    <p class="section-intro reveal">
+      No-code and low-code systems I've shipped across Make.com, n8n, and Zapier.
+      Each one replaces hours of manual work with a trigger and a schedule.
+    </p>
+
+    <div class="work-grid">
+      <div class="work-item reveal">
+        <div class="work-num">01</div>
+        <div class="work-body">
+          <h3>Daily football content pipeline</h3>
+          <p>Scrapes RSS feeds, passes stories through an AI writer, and emails a publish-ready brief every morning. Runs autonomously on Make.com.</p>
+          <div class="work-tags">
+            <span class="tag">Make.com</span>
+            <span class="tag">OpenRouter</span>
+            <span class="tag">RSS</span>
+            <span class="tag">Gmail API</span>
+          </div>
+        </div>
+        <div class="work-meta">In production</div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-num">02</div>
+        <div class="work-body">
+          <h3>AI cold email system (no-code)</h3>
+          <p>Pulls leads from Google Sheets, researches each prospect, and drafts personalized emails through OpenRouter. A lighter alternative to the coded version.</p>
+          <div class="work-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">OpenRouter</span>
+            <span class="tag">Google Sheets</span>
+          </div>
+        </div>
+        <div class="work-meta">In production</div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-num">03</div>
+        <div class="work-body">
+          <h3>Job application screening</h3>
+          <p>Candidates submit a Google Form, Zapier scores and routes them into Sheets with Slack alerts for strong matches. No more inbox triage.</p>
+          <div class="work-tags">
+            <span class="tag">Zapier</span>
+            <span class="tag">Google Forms</span>
+            <span class="tag">Slack</span>
+          </div>
+        </div>
+        <div class="work-meta">Shipped</div>
+      </div>
+
+      <a href="https://github.com/fenomenoo/ai-real-estate-lead-gen" target="_blank" rel="noopener" class="work-item reveal" style="text-decoration: none; color: inherit;">
+        <div class="work-num">04</div>
+        <div class="work-body">
+          <h3>Real estate lead nurture</h3>
+          <p>Automated lead generation and follow-up system for real estate. Captures new leads, enriches them with AI, and drives a nurture sequence across Gmail — all orchestrated in n8n. No lead goes cold.</p>
+          <div class="work-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">Claude AI</span>
+            <span class="tag">Gmail</span>
+            <span class="tag">Google Sheets</span>
+          </div>
+        </div>
+        <div class="work-meta">On GitHub →</div>
+      </a>
+
+      <div class="work-item reveal">
+        <div class="work-num">05</div>
+        <div class="work-body">
+          <h3>Currency alert bot</h3>
+          <p>Pings USD/NGN and GBP/NGN rates to Telegram every morning, with threshold triggers for unusual moves. Built on n8n + ExchangeRate-API.</p>
+          <div class="work-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">Telegram</span>
+            <span class="tag">ExchangeRate API</span>
+          </div>
+        </div>
+        <div class="work-meta">In production</div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-num">06</div>
+        <div class="work-body">
+          <h3>Reuters news digest</h3>
+          <p>Curates Reuters headlines by topic, summarizes with an LLM, and delivers a clean morning digest. Replaces 20 minutes of scrolling.</p>
+          <div class="work-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">RSS</span>
+            <span class="tag">AI Summarization</span>
+          </div>
+        </div>
+        <div class="work-meta">Shipped</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="eyebrow reveal">About</div>
+    <h2 class="section-title reveal" style="margin-bottom: 56px;">Builder, <em>not talker.</em></h2>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I build systems that run quietly in the background while other people are still doing the work by hand.</p>
+        <p>Lead generation, outreach, content pipelines, SEO — the stuff that eats 10+ hours a week in most businesses. I replace it with Python, workflow automation, and AI that actually understands context.</p>
+        <blockquote>I don't ship demos. I ship systems that are still running six months later.</blockquote>
+        <p>No CS degree. No bootcamp. Just GitHub commits and client deadlines that wouldn't wait. I understand what these tools need to do in the real world because I built them for my own work first — then turned them into products.</p>
+      </div>
+
+      <div class="stack-block reveal">
+        <h4>Languages</h4>
+        <ul class="stack-list">
+          <li>Python</li>
+          <li>TypeScript</li>
+          <li>JavaScript</li>
+          <li>SQL</li>
+          <li>HTML/CSS</li>
+        </ul>
+        <h4>AI & Automation</h4>
+        <ul class="stack-list">
+          <li>Claude API</li>
+          <li>OpenRouter</li>
+          <li>Prompt Engineering</li>
+          <li>n8n</li>
+          <li>Make.com</li>
+          <li>Zapier</li>
+          <li>GoHighLevel</li>
+          <li>Chatbase</li>
+        </ul>
+        <h4>Scraping & Backend</h4>
+        <ul class="stack-list">
+          <li>Playwright</li>
+          <li>BeautifulSoup</li>
+          <li>Requests</li>
+          <li>Flask</li>
+          <li>SQLite</li>
+          <li>Typer CLI</li>
+          <li>Jinja2</li>
+          <li>REST APIs</li>
+        </ul>
+        <h4>Delivery & Hosting</h4>
+        <ul class="stack-list">
+          <li>Gmail SMTP</li>
+          <li>Telegram</li>
+          <li>Slack</li>
+          <li>Google Search Console</li>
+          <li>Google Maps API</li>
+          <li>Railway</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="eyebrow reveal" style="justify-content: center;">Contact</div>
+    <h2 class="section-title serif reveal">Have a <em>workflow</em> in mind?</h2>
+    <p class="section-intro reveal" style="margin-left: auto; margin-right: auto; margin-bottom: 40px;">
+      Tell me the repetitive thing you'd rather not do. I'll tell you if I can automate it — and how soon.
+    </p>
+    <a href="mailto:holaigmi@gmail.com" class="contact-email reveal">holaigmi@gmail.com</a>
+    <div class="socials reveal">
+      <a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork</a>
+      <a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <em>Designed & built by Gbolahan Lawal</em> · Lagos, Nigeria · 2026
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
