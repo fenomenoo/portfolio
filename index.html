@@ -1,864 +1,674 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="combo">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gbolahan Lawal, Full-Stack Builder & Automation Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gbolahan Lawal · GTM engineer, AI-native builder</title>
+<meta name="description" content="GTM engineer and AI-native builder. I find your next customers, and show you who I threw out.">
+<meta property="og:title" content="Gbolahan Lawal · GTM engineer, AI-native builder">
+<meta property="og:description" content="I find your next customers, and show you who I threw out.">
+<meta property="og:image" content="assets/stills/aba.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2308261A'/><text x='32' y='44' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%232BE37A'>G.</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@400;500;600&family=Shantell+Sans:wght@400;500&family=Young+Serif&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #EDEAE1;
-    --bg-soft: #E4E0D5;
-    --ink: #1F1E1D;
-    --ink-soft: #3D3B37;
-    --muted: #87847C;
-    --line: #D2CEC2;
-    --coral: #2F5E4E;
-    --coral-dark: #1F4236;
-  }
+:root{
+ --bg:#E8F0E3;--bg2:#DDE8D6;--paper:#FFFFFF;--ink:#08261A;--ink2:#4D6357;--ink3:#7D8F84;
+ --acid:#2BE37A;--lilac:#9C86EE;--deep:#08261A;--deep2:#0E3324;
+ --line:rgba(8,38,26,.12);--lineD:rgba(232,240,227,.12);
+ --display:"Cabinet Grotesk",system-ui,sans-serif;--mono:"Sometype Mono",ui-monospace,monospace;--hand:"Shantell Sans",cursive;
+ --pad:clamp(16px,4vw,48px);--ease:cubic-bezier(.7,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--acid);color:var(--ink)}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase}
+.dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(var(--line) 1.2px,transparent 1.3px);background-size:22px 22px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.28;mix-blend-mode:multiply;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .52  0 0 0 0 .5  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.wrap{position:relative;padding-left:var(--pad);padding-right:var(--pad)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:600;padding:14px 22px;border-radius:999px;background:var(--ink);color:var(--acid);text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(8,38,26,.6)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.acid{background:var(--acid);color:var(--ink)}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.hl{background:linear-gradient(var(--acid),var(--acid)) no-repeat 0 88%/0% 36%;transition:background-size 1s var(--ease)}
+.hl.on{background-size:100% 36%}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head .mono{color:var(--ink2);margin-bottom:14px}
+.sec-head .mono b{color:var(--ink)}
+h2{font-family:var(--display);font-weight:900;font-size:clamp(38px,5.4vw,78px);line-height:.96;letter-spacing:-.028em;max-width:14em}
+.lede{color:var(--ink2);max-width:30em;font-size:17px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+/* ---------- top ---------- */
+.strip{display:flex;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px;color:var(--ink2);border-bottom:1px solid var(--line);font-size:10.5px}
+.strip b{color:var(--ink);font-weight:600}
+.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--acid);margin-right:7px;vertical-align:1px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,227,122,.7)}70%{box-shadow:0 0 0 8px rgba(43,227,122,0)}100%{box-shadow:0 0 0 0 rgba(43,227,122,0)}}
+header.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;transition:background .3s,box-shadow .3s}
+header.nav.stuck{background:rgba(232,240,227,.86);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.mark{font-weight:900;font-size:26px;letter-spacing:-.03em;text-decoration:none}
+.mark i{font-style:normal;color:var(--lilac)}
+.links{display:flex;gap:4px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:999px;padding:4px}
+.links a{font-family:var(--mono);font-size:12.5px;text-decoration:none;padding:8px 14px;border-radius:999px;transition:background .2s}
+.links a:hover,.links a.on{background:var(--ink);color:var(--acid)}
+.nav .btn{padding:11px 18px}
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+/* ---------- hero ---------- */
+.hero{position:relative;overflow-x:clip;display:grid;grid-template-columns:1.08fr .92fr;gap:36px;align-items:center;min-height:calc(100vh - 120px);padding-top:10px;padding-bottom:40px}
+.kicker{color:var(--ink2);margin-bottom:24px}
+.kicker b{color:var(--ink)}
+h1{font-weight:900;font-size:clamp(46px,6.6vw,104px);line-height:.92;letter-spacing:-.03em}
+h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+h1 .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
+h1.in .w>span{transform:none}
+.hero .sub{margin-top:28px;font-size:18px;color:var(--ink2);max-width:31em}
+.hero .ctas{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .proof{margin-top:30px;color:var(--ink3)}
+.hero .proof b{color:var(--ink)}
+.desk{position:relative;height:min(600px,72vh);min-height:470px}
+.print{position:absolute;left:50%;top:44%;width:min(300px,62vw);transform-origin:50% 60%;margin-left:calc(min(300px,62vw)/-2);translate:0 -50%;background:var(--paper);padding:10px 10px 38px;border-radius:3px;
+ box-shadow:0 2px 0 rgba(0,0,0,.04),0 30px 50px -24px rgba(8,38,26,.55);transition:transform 1s var(--ease),opacity .6s;cursor:pointer}
+.print img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:1px;background:var(--bg2)}
+.print figcaption{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;gap:8px;color:var(--ink2);font-size:9.5px}
+.print .play{position:absolute;left:50%;top:44%;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:var(--ink);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:all .4s var(--ease)}
+.print .play::after{content:"";border-left:15px solid var(--acid);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:5px}
+.print.front .play{opacity:1;transform:none}
+.tape{position:absolute;width:76px;height:22px;top:-11px;left:50%;margin-left:-38px;background:rgba(156,134,238,.45);transform:rotate(-3deg)}
+.note{position:absolute;right:0;bottom:4%;width:min(270px,70vw);background:var(--acid);padding:18px 20px 16px;transform:rotate(2.5deg);z-index:40;box-shadow:0 16px 28px -16px rgba(8,38,26,.6);transition:transform .4s var(--ease)}
+.note:hover{transform:rotate(0deg) scale(1.02)}
+.note q{display:block;font-family:var(--hand);font-size:15.5px;line-height:1.4;quotes:none;min-height:5.6em;transition:opacity .4s}
+.note .who{display:block;margin-top:10px;font-size:9.5px;color:rgba(8,38,26,.7);transition:opacity .4s}
+.note .pin{position:absolute;top:-8px;left:22px;width:16px;height:16px;border-radius:50%;background:var(--lilac);box-shadow:inset -2px -3px 0 rgba(0,0,0,.18)}
+.drag-hint{position:absolute;left:4%;bottom:6%;font-family:var(--hand);font-size:15px;color:var(--ink2);transform:rotate(-5deg)}
+.drag-hint svg{display:block;width:54px;height:30px;margin:4px 0 0 40px}
 
-  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+/* ---------- marquee ---------- */
+.marquee{position:relative;overflow:hidden;max-width:100vw;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
+.marquee .track{display:flex;gap:46px;width:max-content;padding:18px 0;animation:mq 46s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.marquee span{font-family:var(--mono);font-size:13px;letter-spacing:.06em;white-space:nowrap;display:flex;align-items:center;gap:46px}
+.marquee span::after{content:"✳";color:var(--lilac)}
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(240, 238, 230, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  nav.scrolled { border-bottom-color: var(--line); }
-  .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; max-width: 1100px; margin: 0 auto; }
-  .logo { font-family: 'Instrument Serif', serif; font-size: 24px; font-style: italic; text-decoration: none; color: var(--ink); }
-  .logo-dot { color: var(--coral); }
-  .nav-links { display: flex; gap: 28px; list-style: none; font-size: 14px; color: var(--ink-soft); }
-  .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--coral); }
-  @media (max-width: 640px) { .nav-links { display: none; } }
+/* ---------- cut list / terminal ---------- */
+.cut{padding-top:130px;padding-bottom:130px}
+.cut-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.facts{margin-top:34px;display:grid;gap:0;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink2)}
+.facts div b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);padding-top:4px}
+.term{background:var(--deep);color:#CFE3D3;border-radius:14px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(8,38,26,.8);font-family:var(--mono);font-size:13.5px;line-height:1.75}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--lineD);color:#7FA08A;font-size:11px;letter-spacing:.06em}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#2A4A3A}
+.term-bar i:first-child{background:var(--lilac)}
+.term-bar span{margin-left:auto}
+.term-body{padding:22px 22px 26px;min-height:390px;white-space:pre-wrap}
+.term-body .pr{color:var(--acid)}
+.term-body .dim{color:#6E8F7A}
+.term-body .big{color:#fff;font-weight:600}
+.term-body .caret{display:inline-block;width:8px;height:16px;background:var(--acid);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.term-foot{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;border-top:1px solid var(--lineD);flex-wrap:wrap}
+.term-foot .btn{padding:10px 16px;font-size:12px}
+.term-foot a.mono{color:#9FC2AA;text-decoration:none;font-size:10.5px}
+.limit{margin-top:22px;display:flex;gap:14px;align-items:flex-start;font-family:var(--hand);font-size:17px;line-height:1.4;color:var(--ink);background:var(--paper);padding:18px 20px;border-radius:4px;transform:rotate(-1deg);box-shadow:0 12px 24px -18px rgba(8,38,26,.5);border-left:4px solid var(--lilac)}
 
-  /* HERO */
-  .hero { padding: 80px 0 120px; position: relative; }
-  .availability {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--ink-soft);
-    margin-bottom: 32px; padding: 6px 14px;
-    background: var(--bg-soft); border-radius: 99px; border: 1px solid var(--line);
-  }
-  .dot-pulse { width: 8px; height: 8px; background: #5a9d5a; border-radius: 50%; position: relative; }
-  .dot-pulse::after { content: ''; position: absolute; inset: -4px; background: #5a9d5a; border-radius: 50%; opacity: 0.4; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.6); opacity: 0; } }
+/* ---------- work rail ---------- */
+.work{padding-top:40px;padding-bottom:120px;overflow:hidden}
+.rail-ctl{display:flex;gap:10px;align-items:center}
+.rail-ctl button{width:48px;height:48px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--ink);display:grid;place-items:center;font-size:18px;transition:background .2s,color .2s}
+.rail-ctl button:hover{background:var(--ink);color:var(--acid)}
+.rail-ctl .count{font-family:var(--mono);font-size:12px;color:var(--ink2);min-width:64px;text-align:center}
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px var(--pad) 30px;margin:0 calc(var(--pad)*-1);scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.rail.dragging *{pointer-events:none}
+.case{flex:none;width:min(430px,84vw);scroll-snap-align:start;background:var(--paper);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line),0 24px 40px -30px rgba(8,38,26,.45);transition:transform .45s var(--ease)}
+.case:hover{transform:translateY(-6px)}
+.thumb{position:relative;height:260px;background:var(--bg2);overflow:hidden;border-bottom:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.2s var(--ease)}
+.case:hover .thumb img{transform:scale(1.04)}
+.thumb .badge{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--acid);padding:5px 10px;border-radius:999px;font-size:10px;z-index:2}
+.thumb .badge.l{background:var(--lilac);color:var(--ink)}
+.case-body{padding:22px 22px 20px;display:flex;flex-direction:column;flex:1}
+.case-top{display:flex;justify-content:space-between;color:var(--ink3);font-size:10.5px}
+.case h3{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.05;margin-top:10px}
+.case p{margin-top:10px;color:var(--ink2);font-size:15px;line-height:1.5}
+.case .tags{margin-top:auto;padding-top:16px;display:flex;flex-wrap:wrap;gap:6px}
+.case .tags span{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:999px;background:var(--bg)}
+.case .go{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;text-decoration:none}
+.case .go.muted{color:var(--ink3)}
+/* widget thumbs */
+.w-term{position:absolute;inset:18px;background:var(--deep);border-radius:10px;padding:16px;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:#CFE3D3;white-space:pre}
+.w-term .pr{color:var(--acid)}
+.w-sheet{position:absolute;inset:18px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--line);font-family:var(--mono);font-size:10.5px}
+.w-sheet .fx{display:flex;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink2)}
+.w-sheet .fx b{color:var(--lilac)}
+.w-sheet .fx span{color:var(--ink);overflow:hidden;white-space:nowrap}
+.w-sheet table{width:100%;border-collapse:collapse}
+.w-sheet td{border:1px solid var(--line);padding:6px 8px;height:27px;color:var(--ink)}
+.w-sheet td:first-child{width:46%}
+.w-sheet .ok{color:#139a50;font-weight:600}
+.w-sheet .tabs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:2px;background:var(--bg);padding:4px 6px 0;overflow:hidden}
+.w-sheet .tabs span{padding:4px 8px;background:#fff;border-radius:4px 4px 0 0;white-space:nowrap;font-size:9.5px;color:var(--ink2)}
+.w-sheet .tabs span:first-child{color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--acid)}
+.w-checks{position:absolute;inset:18px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:center}
+.w-checks div{background:#fff;border-radius:8px;padding:9px 10px;font-family:var(--mono);font-size:10.5px;display:flex;align-items:center;gap:8px;box-shadow:0 0 0 1px var(--line);transition:background .3s}
+.w-checks div::before{content:"";width:12px;height:12px;border-radius:3px;box-shadow:inset 0 0 0 1.5px var(--ink3);flex:none}
+.w-checks div.on{background:var(--acid)}
+.w-checks div.on::before{background:var(--ink);box-shadow:none}
+.w-seq{position:absolute;inset:24px 22px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.w-seq .row{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px}
+.w-seq .day{width:58px;color:var(--ink2)}
+.w-seq .mail{flex:1;background:#fff;border-radius:8px;padding:10px 12px;box-shadow:0 0 0 1px var(--line);display:flex;justify-content:space-between;opacity:.35;transform:translateX(-8px);transition:all .5s var(--ease)}
+.w-seq .mail.on{opacity:1;transform:none}
+.w-seq .mail.stop{background:var(--ink);color:var(--acid)}
+.w-timer{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.w-timer .t{font-family:var(--mono);font-size:64px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.w-timer .bar{width:220px;height:6px;border-radius:9px;background:#fff;margin:10px auto 0;overflow:hidden}
+.w-timer .bar i{display:block;height:100%;background:var(--lilac);width:100%;transform-origin:left;animation:drain 30s linear infinite}
+@keyframes drain{to{transform:scaleX(0)}}
+.w-timer small{display:block;margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--ink2);letter-spacing:.08em;text-transform:uppercase}
+.w-spring{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:14px;padding-bottom:56px}
+.w-spring i{width:34px;border-radius:8px 8px 3px 3px;background:var(--ink);animation:spring 2.4s cubic-bezier(.34,1.56,.64,1) infinite alternate}
+.w-spring i:nth-child(2){background:var(--acid);animation-delay:.15s}.w-spring i:nth-child(3){background:var(--lilac);animation-delay:.3s}.w-spring i:nth-child(4){animation-delay:.45s}.w-spring i:nth-child(5){background:var(--acid);animation-delay:.6s}
+@keyframes spring{from{height:24px}to{height:150px}}
+.w-cols{position:absolute;inset:18px;background:#fff;border-radius:8px;box-shadow:0 0 0 1px var(--line);font-family:var(--mono);font-size:10.5px;overflow:hidden}
+.w-cols .h{display:grid;grid-template-columns:repeat(5,1fr);background:var(--ink);color:var(--acid)}
+.w-cols .h span,.w-cols .r span{padding:8px 8px}
+.w-cols .r{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
+.w-cols .r span i{display:block;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--bg2),#f4f8f1,var(--bg2));background-size:200% 100%;animation:sh 1.6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.more{margin-top:40px;border-top:1px solid var(--line)}
+.more>.mono{display:block;color:var(--ink2);padding:18px 0 6px}
+.more-row{display:grid;grid-template-columns:1.1fr 2fr .9fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:background .2s,padding .3s var(--ease)}
+.more-row:hover{background:var(--paper);padding-left:12px;padding-right:12px}
+.more-row b{font-weight:800;font-size:17px}
+.more-row span{color:var(--ink2);font-size:15px}
+.more-row em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;text-align:right;color:var(--ink2)}
 
-  h1.hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(52px, 9vw, 112px); line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 32px; }
-  h1.hero-title em { color: var(--coral); font-style: italic; }
-  .hero-sub { font-size: 20px; color: var(--ink-soft); max-width: 620px; line-height: 1.55; margin-bottom: 48px; }
-  @media (max-width: 640px) { .hero-sub { font-size: 17px; } .hero { padding: 48px 0 80px; } }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-metrics {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-    margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line);
-    max-width: 720px;
-  }
-  .metric-num {
-    font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1;
-    color: var(--coral); letter-spacing: -1px;
-  }
-  .metric-label {
-    font-size: 12px; color: var(--muted); margin-top: 8px;
-    text-transform: uppercase; letter-spacing: 0.8px;
-  }
-  @media (max-width: 700px) {
-    .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .metric-num { font-size: 36px; }
-  }
+/* ---------- videos (dark) ---------- */
+.dark{background:var(--deep);color:var(--bg);position:relative;overflow:hidden}
+.dark .dots{background-image:radial-gradient(var(--lineD) 1.2px,transparent 1.3px)}
+.dark h2{color:var(--bg)}
+.dark .sec-head .mono{color:#8FB09A}
+.dark .sec-head .mono b{color:var(--acid)}
+.dark .lede{color:#A9C2B1}
+.videos{padding-top:130px;padding-bottom:130px}
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.vcard{position:relative;cursor:pointer;background:var(--deep2);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--lineD);transition:transform .5s var(--ease)}
+.vcard:hover{transform:translateY(-6px) rotate(-.6deg)}
+.vcard:nth-child(even):hover{transform:translateY(-6px) rotate(.6deg)}
+.vcard .media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#0a2e20}
+.vcard img,.vcard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.vcard video{opacity:0;transition:opacity .4s}
+.vcard.playing video{opacity:1}
+.vcard .info{padding:16px 16px 18px}
+.vcard .sector{color:var(--acid);font-size:10px}
+.vcard .arg{margin-top:8px;font-size:16px;line-height:1.35;color:var(--bg);font-weight:500}
+.vcard .pl{position:absolute;right:12px;bottom:12px;width:44px;height:44px;border-radius:50%;background:var(--acid);display:grid;place-items:center;z-index:2;transition:transform .3s var(--ease)}
+.vcard:hover .pl{transform:scale(1.12)}
+.vcard .pl::after{content:"";border-left:12px solid var(--ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+.vcard.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.vcard.wide .info{display:flex;flex-direction:column;justify-content:center;padding:28px}
+.vcard.wide .arg{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.vcard.wide .yt{margin-top:22px;align-self:flex-start}
+.vnote{margin-top:30px;color:#8FB09A}
 
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 22px; border-radius: 99px;
-    font-size: 14px; font-weight: 500; text-decoration: none;
-    transition: all 0.2s; border: 1px solid transparent; cursor: pointer;
-  }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: var(--coral); transform: translateY(-1px); }
-  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn-ghost:hover { border-color: var(--ink); }
+/* ---------- notes ---------- */
+.notes{padding-top:130px;padding-bottom:140px}
+.board{position:relative;height:640px;margin-top:10px}
+.sticky{position:absolute;width:300px;padding:22px 22px 18px;background:var(--paper);box-shadow:0 18px 30px -18px rgba(8,38,26,.55);cursor:grab;touch-action:none;user-select:none;transition:box-shadow .2s}
+.sticky.drag{cursor:grabbing;box-shadow:0 34px 50px -20px rgba(8,38,26,.6);z-index:50!important}
+.sticky.a{background:var(--acid)}.sticky.l{background:var(--lilac)}
+.sticky q{display:block;font-family:var(--hand);font-size:17px;line-height:1.42;quotes:none}
+.sticky .who{display:block;margin-top:14px;font-size:10px;color:rgba(8,38,26,.7)}
+.sticky .who b{color:var(--ink)}
+.sticky::before{content:"";position:absolute;top:-10px;left:50%;margin-left:-34px;width:68px;height:20px;background:rgba(255,255,255,.55);transform:rotate(-2deg)}
+.sticky.a::before,.sticky.l::before{background:rgba(255,255,255,.45)}
 
-  .hero-decoration {
-    position: absolute; right: -40px; top: 80px;
-    font-family: 'Instrument Serif', serif; font-style: italic;
-    font-size: 14px; color: var(--muted);
-    writing-mode: vertical-rl; letter-spacing: 0.15em;
-  }
-  @media (max-width: 900px) { .hero-decoration { display: none; } }
+/* ---------- how ---------- */
+.how{padding-top:40px;padding-bottom:130px}
+.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ticket{position:relative;background:var(--paper);border-radius:10px;padding:26px 24px 22px 50px;transition:transform .5s var(--ease);--r:10px;
+ -webkit-mask:radial-gradient(circle var(--r) at 30px 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle var(--r) at 30px 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.ticket:hover{transform:translateY(-6px) rotate(-.8deg)}
+.ticket::before{content:"";position:absolute;left:30px;top:16px;bottom:16px;border-left:2px dashed var(--line)}
+.ticket .side{position:absolute;left:4px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:9.5px;color:var(--ink3);white-space:nowrap;width:20px;display:flex;justify-content:center}
+.ticket h3{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.05;margin-top:8px}
+.ticket .mono.top{color:var(--ink3);font-size:10.5px}
+.ticket p{margin-top:10px;color:var(--ink2);font-size:15px}
+.ticket ul{list-style:none;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.ticket li{display:flex;gap:10px;font-size:14.5px;padding:5px 0}
+.ticket li::before{content:"✳";color:var(--lilac);flex:none}
+.ticket .go{display:inline-block;margin-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid var(--ink)}
+.refuse{margin-top:60px;display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}
+.refuse h3{font-weight:900;font-size:clamp(30px,3.6vw,48px);letter-spacing:-.035em;line-height:1}
+.refuse ol{list-style:none;counter-reset:r}
+.refuse li{counter-increment:r;display:grid;grid-template-columns:54px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px}
+.refuse li::before{content:"0" counter(r);font-family:var(--mono);font-size:12px;color:var(--ink3);padding-top:4px}
+.refuse li b{display:block;font-weight:800;text-decoration:line-through;text-decoration-color:var(--lilac);text-decoration-thickness:3px}
+.refuse li span{color:var(--ink2);font-size:15px}
 
-  /* SECTIONS */
-  section { padding: 96px 0; border-top: 1px solid var(--line); }
-  @media (max-width: 640px) { section { padding: 64px 0; } }
+/* ---------- about ---------- */
+.about{padding-top:130px;padding-bottom:130px}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.idcard{perspective:1200px;width:min(340px,100%);height:460px;cursor:pointer;position:sticky;top:110px}
+.idcard .in{position:relative;width:100%;height:100%;transition:transform 1s var(--ease);transform-style:preserve-3d}
+.idcard.flip .in{transform:rotateY(180deg)}
+.idcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:24px;display:flex;flex-direction:column;box-shadow:0 30px 50px -30px rgba(0,0,0,.8)}
+.idcard .front{background:var(--acid);color:var(--ink)}
+.idcard .back{background:var(--paper);color:var(--ink);transform:rotateY(180deg)}
+.idcard .hole{width:64px;height:10px;border-radius:9px;background:var(--deep);margin:0 auto 20px;opacity:.85}
+.idcard .mono{font-size:10px}
+.idcard .nm{margin-top:auto;font-weight:900;font-size:58px;line-height:.86;letter-spacing:-.05em}
+.idcard .rl{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.idcard .bc{margin-top:18px;height:34px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px,var(--ink) 9px 12px,transparent 12px 14px)}
+.idcard .flip-hint{margin-top:10px;font-family:var(--hand);font-size:13px;opacity:.75}
+.idcard .back h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:14px}
+.idcard .rec{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.idcard .rec b{font-family:var(--mono);font-size:14px}
+.idcard .back small{margin-top:auto;font-size:12px;color:var(--ink2);line-height:1.45}
+.about-copy p{font-size:20px;line-height:1.55;margin-bottom:20px;max-width:32em}
+.about-copy p.dim{color:var(--ink2);font-size:17px}
+.timeline{margin-top:40px;border-top:1.5px solid var(--ink)}
+.tl{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+.tl .when{font-family:var(--mono);font-size:11.5px;color:var(--ink2);padding-top:4px}
+.tl .when .now{color:#139a50}
+.tl b{font-weight:800;font-size:18px}
+.tl span{display:block;color:var(--ink2);font-size:15px}
+.stack{margin-top:36px;display:flex;flex-wrap:wrap;gap:8px}
+.stack span{font-family:var(--mono);font-size:11.5px;padding:7px 12px;border-radius:999px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
 
-  .eyebrow {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 24px;
-  }
-  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
+/* ---------- contact ---------- */
+.contact{padding-top:140px;padding-bottom:60px}
+.contact h2{font-size:clamp(52px,10vw,170px);max-width:none;line-height:.88;letter-spacing:-.04em}
+.contact h2 em{font-style:normal;color:var(--acid)}
+.contact .row{margin-top:50px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.copy{position:relative}
+.copy .ok{position:absolute;left:50%;top:-34px;transform:translateX(-50%);background:var(--lilac);color:var(--ink);font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:6px;opacity:0;transition:opacity .3s;white-space:nowrap}
+.copy.done .ok{opacity:1}
+.socials{margin-top:70px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--lineD);padding-top:22px;color:#A9C2B1}
+.socials nav{display:flex;gap:22px;flex-wrap:wrap}
+.socials a{text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.socials a:hover{color:var(--acid)}
+.dark .btn.ghost{color:var(--bg);box-shadow:inset 0 0 0 1.5px var(--bg)}
 
-  .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(36px, 5.5vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
-  .section-title em { color: var(--coral); font-style: italic; }
-  .section-intro { font-size: 18px; color: var(--ink-soft); max-width: 620px; margin-bottom: 56px; }
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:300;background:rgba(4,20,13,.86);backdrop-filter:blur(8px);display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.modal video{max-height:86vh;max-width:min(92vw,700px);border-radius:10px;background:#000}
+.modal .x{position:absolute;top:18px;right:18px;width:48px;height:48px;border-radius:50%;background:var(--acid);color:var(--ink);font-size:20px;font-weight:700}
+.modal .cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#A9C2B1}
 
-  .case-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 32px; padding: 40px 0; border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .case-stat { padding: 8px 0; }
-  .case-num {
-    font-family: 'Instrument Serif', serif; font-size: 72px; line-height: 1;
-    color: var(--coral); letter-spacing: -1.5px; margin-bottom: 12px;
-  }
-  .case-label {
-    font-size: 15px; color: var(--ink); font-weight: 500; margin-bottom: 6px;
-  }
-  .case-detail {
-    font-size: 13px; color: var(--muted); line-height: 1.5;
-  }
-  .case-note {
-    margin-top: 32px; font-size: 14px; color: var(--muted); font-style: italic;
-  }
-  @media (max-width: 700px) {
-    .case-num { font-size: 56px; }
-  }
 
-  /* FEATURED CARDS */
-  .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+/* ---------- combo theme: Mint Acid + Emerald & Brass ---------- */
+[data-theme=combo]{--deep:#0F4A37;--deep2:#135840;--lilac:#E2B85C;--coral:#E5674B;--paper:#FBF8EF;--bg2:#DCE7D4;--lineD:rgba(243,235,216,.13);--cream:#F3EBD8;--serif:"Young Serif",Georgia,serif}
+[data-theme=combo] .hl,[data-theme=combo] .contact h2 em{font-family:var(--serif);font-weight:400;letter-spacing:-.025em}
+[data-theme=combo] h1 .hl{font-size:.96em}
+[data-theme=combo] .dark{color:var(--cream)}
+[data-theme=combo] .dark h2,[data-theme=combo] .dark .vcard .arg{color:var(--cream)}
+[data-theme=combo] .dark .sec-head .mono b,[data-theme=combo] .vcard .sector,[data-theme=combo] .contact h2 em,[data-theme=combo] .contact .mono b{color:var(--lilac)!important}
+[data-theme=combo] .dark .btn.acid,[data-theme=combo] .vcard .pl{background:var(--lilac)}
+[data-theme=combo] .dark .hl{background-image:linear-gradient(rgba(226,184,92,.45),rgba(226,184,92,.45))}
+[data-theme=combo] .vcard{background:#0C3F2F}
+[data-theme=combo] .vcard .media{background:#0B3A2B}
+[data-theme=combo] .tape{background:rgba(226,184,92,.55)}
+[data-theme=combo] .refuse li b{text-decoration-color:var(--coral)}
+[data-theme=combo] .mark i,[data-theme=combo] .marquee span::after{color:var(--coral)}
+[data-theme=combo] .term-bar i:first-child{background:var(--coral)}
+[data-theme=combo] .limit{border-left-color:var(--coral)}
+[data-theme=combo] .modal{background:rgba(9,40,29,.88)}
 
-  .featured-card {
-    background: var(--bg-soft); border: 1px solid var(--line);
-    border-radius: 18px; padding: 32px;
-    display: flex; flex-direction: column;
-    text-decoration: none; color: inherit;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    position: relative; overflow: hidden; min-height: 340px;
-  }
-  .featured-card:hover { transform: translateY(-4px); border-color: var(--coral); box-shadow: 0 20px 40px -20px rgba(31, 30, 29, 0.15); }
-
-  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-  .card-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: var(--coral); }
-  .card-badge { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; background: var(--coral); color: var(--bg); font-weight: 500; }
-  .card-badge.alt { background: transparent; color: var(--coral); border: 1px solid var(--coral); }
-
-  .featured-card h3 { font-family: 'Instrument Serif', serif; font-size: 28px; line-height: 1.1; margin-bottom: 12px; }
-  .featured-card p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin-bottom: 20px; flex-grow: 1; }
-
-  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-  .tag { font-size: 12px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 99px; color: var(--ink-soft); }
-
-  .card-link { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 15px; color: var(--coral); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
-  .featured-card:hover .card-link { gap: 12px; }
-
-  /* WORKFLOW LIST */
-  .work-grid { display: flex; flex-direction: column; }
-  .work-item {
-    display: grid; grid-template-columns: 60px 1fr auto;
-    gap: 24px; padding: 28px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start; transition: padding 0.3s; position: relative;
-  }
-  .work-item:hover { padding-left: 12px; }
-  .work-item::before { content: '→'; position: absolute; left: -20px; top: 32px; color: var(--coral); opacity: 0; transition: opacity 0.3s; font-size: 14px; }
-  .work-item:hover::before { opacity: 1; }
-
-  .work-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--muted); padding-top: 6px; }
-  .work-body h3 { font-family: 'Instrument Serif', serif; font-size: 24px; line-height: 1.15; margin-bottom: 8px; }
-  .work-body p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; max-width: 540px; margin-bottom: 14px; }
-  .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .work-meta { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--muted); padding-top: 10px; text-align: right; white-space: nowrap; }
-
-  @media (max-width: 720px) {
-    .work-item { grid-template-columns: 30px 1fr; gap: 16px; }
-    .work-meta { grid-column: 2; text-align: left; padding-top: 0; }
-    .work-body h3 { font-size: 20px; }
-  }
-
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
-
-  .about-text p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 20px; }
-  .about-text p:first-child::first-letter { font-family: 'Instrument Serif', serif; font-size: 64px; float: left; line-height: 0.9; padding: 6px 10px 0 0; color: var(--coral); }
-  .about-text blockquote {
-    border-left: 2px solid var(--coral); padding-left: 20px;
-    font-family: 'Instrument Serif', serif; font-style: italic;
-    font-size: 22px; line-height: 1.4; color: var(--ink);
-    margin: 28px 0;
-  }
-
-  .stack-block { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
-  .stack-block h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 500; }
-  .stack-block h4:not(:first-child) { margin-top: 24px; }
-  .stack-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-  .stack-list li { font-size: 13px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 99px; color: var(--ink-soft); }
-
-  /* CONTACT */
-  .contact { text-align: center; padding: 120px 0 80px; }
-  .contact .section-title { font-size: clamp(44px, 8vw, 96px); margin-bottom: 24px; }
-  .contact-email {
-    display: inline-block; font-family: 'Instrument Serif', serif; font-style: italic;
-    font-size: clamp(22px, 3.8vw, 34px); color: var(--coral); text-decoration: none;
-    border-bottom: 1px solid var(--coral); padding-bottom: 4px;
-    transition: color 0.2s; word-break: break-all;
-  }
-  .contact-email:hover { color: var(--coral-dark); }
-
-  .socials { display: flex; justify-content: center; gap: 24px; margin-top: 48px; font-size: 14px; color: var(--ink-soft); flex-wrap: wrap; }
-  .socials a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-  .socials a:hover { border-bottom-color: var(--coral); }
-
-  /* FOOTER */
-  footer { padding: 32px 0; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--muted); }
-  footer em { font-family: 'Instrument Serif', serif; }
-
-  /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width:1000px){
+ .hero,.cut-grid,.about-grid,.refuse{grid-template-columns:1fr}
+ .links{display:none}
+ .vgrid{grid-template-columns:1fr 1fr}
+ .vcard.wide{grid-column:span 2}
+ .tickets{grid-template-columns:1fr}
+ .idcard{position:relative;top:0;margin:0 auto}
+ .board{height:auto;display:grid;gap:26px;justify-items:center}
+ .sticky{position:relative;left:auto!important;top:auto!important;width:min(340px,100%)}
+}
+@media (max-width:640px){
+ .strip span:nth-child(2){display:none}
+ .vgrid{grid-template-columns:1fr}
+ .vcard.wide{grid-column:auto;grid-template-columns:1fr}
+ .more-row{grid-template-columns:1fr}
+ .more-row em{text-align:left}
+ .tl{grid-template-columns:1fr;gap:4px}
+ .facts div{grid-template-columns:1fr;gap:4px}
+ .nav .btn{display:none}
+ .drag-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}h1 .w>span{transform:none}}
 </style>
 </head>
 <body>
+<div class="grain"></div>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" class="logo">Gbolahan<span class="logo-dot">.</span></a>
-    <ul class="nav-links">
-      <li><a href="#featured">Featured</a></li>
-      <li><a href="#case-study">Case study</a></li>
-      <li><a href="#workflows">Workflows</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="wrap strip mono"><span><span class="pulse"></span>STATUS:: <b>OPEN TO GTM ROLES + PROJECTS</b></span><span>LATEST:: <b>npi-triggers, Oct 2026</b></span><span>WORKS:: <b>REMOTE</b></span></div>
+<header class="wrap nav" id="nav">
+ <a class="mark" href="#top">Gbolahan<i>.</i></a>
+ <nav class="links"><a href="#cut">The cut list</a><a href="#work">Work</a><a href="#videos">Videos</a><a href="#notes">Notes</a><a href="#how">How I work</a><a href="#about">About</a></nav>
+ <a class="btn" href="#contact">Send me your market</a>
+</header>
 
-<section class="hero" style="border-top: none; padding-top: 60px;">
-  <div class="container">
-    <div class="availability reveal">
-      <span class="dot-pulse"></span>
-      Open to remote roles, freelance & short-term contracts
-    </div>
-    <h1 class="hero-title reveal">
-      Automation<br />
-      that actually <em>ships.</em>
-    </h1>
-    <p class="hero-sub reveal" style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px;">
-      Full-Stack Builder &nbsp;·&nbsp; Python Automation Developer &nbsp;·&nbsp; Lead Gen &amp; Sales Automation
-    </p>
-    <p class="hero-sub reveal">
-      I'm Gbolahan, a Python automation developer and full-stack web builder who came up through sales, not computer science.
-      I spent years running cold email, LinkedIn prospecting, and CRM pipelines by hand.
-      Then I taught myself to automate it: Python first, then Next.js, Supabase, TypeScript.
-      Now I build the systems that replace that work: lead engines, outreach pipelines,
-      AI-powered content tools, and full-stack platforms, all running in production.
-    </p>
-    <div class="hero-cta reveal">
-      <a href="#featured" class="btn btn-primary">See my work →</a>
-      <a href="#contact" class="btn btn-ghost">Get in touch</a>
-    </div>
-  </div>
-  <div class="hero-decoration">Portfolio / 2026</div>
+<main id="top">
+<!-- HERO -->
+<section class="wrap hero">
+ <div class="dots"></div>
+ <div style="position:relative">
+  <p class="mono kicker">OWNER:: <b>GBOLAHAN LAWAL</b> &nbsp;·&nbsp; ROLE:: <b>GTM ENGINEER · AI-NATIVE BUILDER</b></p>
+  <h1 id="h1">I find your next customers, and show you who I <span class="hl" id="h1hl">threw out.</span></h1>
+  <p class="sub">I research the market, verify every contact one at a time, write the outreach, and build the systems that run it. Every list comes with the names I removed and the reason beside each one.</p>
+  <div class="ctas"><a class="btn" href="#work">See the work <span class="arr">&rarr;</span></a><a class="btn ghost" href="#videos">Watch a pitch video</a></div>
+  <p class="mono proof">PROMISE:: <b>I'll tell you who not to call before I tell you who to call.</b></p>
+ </div>
+ <div class="desk" id="desk">
+  <div class="drag-hint">click the top one<svg viewBox="0 0 54 30"><path d="M3 4 C 18 6, 36 14, 48 26 M48 26 l-9 -1 M48 26 l0 -9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div class="note" id="note"><span class="pin"></span><q id="noteQ"></q><span class="mono who" id="noteW"></span></div>
+ </div>
 </section>
 
-<section id="featured">
-  <div class="container">
-    <div class="eyebrow reveal">Featured work</div>
-    <h2 class="section-title reveal">Built from <em>scratch.</em></h2>
-    <p class="section-intro reveal">
-      Production systems I designed, coded, and shipped end-to-end.
-      Next.js, Supabase, Python, Claude API, Flask, and a lot of late nights.
-    </p>
+<div class="marquee"><div class="track" id="mq"></div></div>
 
-    <div class="featured-grid">
-
-      <a href="https://rank-forge.netlify.app/" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">01</div>
-          <span class="card-badge">Live product</span>
-        </div>
-        <h3>RankForge: AI SEO Growth Engine</h3>
-        <p>An autonomous SEO system I built from scratch. Connects to Google Search Console, surfaces every keyword one push from page one, runs AI competitor analysis via Claude, writes brand-trained content, and loops weekly, without you. Productized at three tiers: $500 setup, $1,200/mo, and $2,000/mo autonomous.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Claude API</span>
-          <span class="tag">GSC API</span>
-          <span class="tag">Jinja2</span>
-          <span class="tag">Typer CLI</span>
-        </div>
-        <span class="card-link">Visit rank-forge.netlify.app →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/brand-deal-machine" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">02</div>
-          <span class="card-badge alt">Open source</span>
-        </div>
-        <h3>Brand Deal Machine</h3>
-        <p>End-to-end brand outreach automation for content creators. Discovers brands by niche via web scraping, generates personalized 3-email pitch sequences with Claude, sends via Gmail SMTP, and auto follow-ups on Day 3 and Day 7. Full Flask dashboard plus an 8-command CLI. Tracks every brand from first contact to deal closed.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Claude API</span>
-          <span class="tag">Flask</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">BeautifulSoup</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <a href="https://lead-generation-ai-gamma.vercel.app" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">03</div>
-          <span class="card-badge">Live, 4 active clients</span>
-        </div>
-        <h3>LeadGen AI</h3>
-        <p>Full-stack B2B outreach engine running live campaigns across the US and Europe. Scrapes decision makers, enriches verified emails via Snov.io + Prospeo, writes AI-personalised sequences with Claude, and sends via Gmail SMTP. <strong>1,737 leads generated. 77 meetings booked. 32 deals closed. 18.5% average reply rate across UK, US, Spain, Italy and Portugal.</strong></p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Flask</span>
-          <span class="tag">Claude API</span>
-          <span class="tag">Playwright</span>
-          <span class="tag">Snov.io</span>
-          <span class="tag">Vercel</span>
-        </div>
-        <span class="card-link">View Live Dashboard →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/remotion-studio" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">04</div>
-          <span class="card-badge alt">Open source</span>
-        </div>
-        <h3>Remotion Studio</h3>
-        <p>A programmatic animated marketing video, 7 scenes, 50 seconds, built entirely in code. Spring physics animations, count-up stats, SVG graphics, audio sync. Code-driven video as an alternative to After Effects for repeatable, version-controlled brand content.</p>
-        <div class="card-tags">
-          <span class="tag">TypeScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Remotion</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <div class="featured-card reveal" style="cursor: default;">
-        <div class="card-header">
-          <div class="card-num">05</div>
-          <span class="card-badge">Live · Internal</span>
-        </div>
-        <h3>PF Team Ife: Internal Lead-Gen Platform</h3>
-        <p>Full internal platform for a 10-person team across 10 award and media brands, Pan Finance, Business Circle, FDI Insider, Luxuri, and six more. Role-based workflow, SNOV CSV upload pipeline, brand-level lead tracking. Handles up to 5,000 leads per batch. Deployed to Netlify and in daily production use.</p>
-        <div class="card-tags">
-          <span class="tag">Next.js 14</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">Supabase</span>
-          <span class="tag">Framer Motion</span>
-          <span class="tag">Netlify</span>
-        </div>
-        <span class="card-link" style="opacity: 0.4;">Private repo · internal use</span>
-      </div>
-
-      <a href="https://flycleared.com" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">06</div>
-          <span class="card-badge">Live · Founder</span>
-        </div>
-        <h3>Cleared: B1/B2 Visa Kit</h3>
-        <p>Founder and sole engineer. Guided B1/B2 US visa application kit for Nigerian travellers, built ahead of the 2026 FIFA World Cup outbound surge. Full-stack product: auth, payments, and automated onboarding flows, all built solo.</p>
-        <div class="card-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">Supabase</span>
-          <span class="tag">Paystack</span>
-          <span class="tag">n8n</span>
-        </div>
-        <span class="card-link">Visit flycleared.com →</span>
-      </a>
-
-      <div class="featured-card reveal" style="cursor: default;">
-        <div class="card-header">
-          <div class="card-num">07</div>
-          <span class="card-badge">Live product</span>
-        </div>
-        <h3>Client Machine: SaaS Landing Page</h3>
-        <p>Full responsive SaaS marketing website built around my lead generation service. Tab-based booking with a Calendly embed and a manual form fallback, a live stats dashboard mockup, toast notification system, and smooth scroll UX. Designed to convert cold visitors into discovery calls.</p>
-        <div class="card-tags">
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Calendly API</span>
-        </div>
-        <span class="card-link" style="opacity: 0.4;">Static site, deployed</span>
-      </div>
-
-      <a href="https://github.com/fenomenoo/rag-demo" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">08</div>
-          <span class="card-badge alt">Open source</span>
-        </div>
-        <h3>RAG Pipeline</h3>
-        <p>Production-readable retrieval-augmented generation system. Ingest PDFs and TXT files, chunk and embed locally with <em>sentence-transformers</em> (no external embedding API), store vectors in ChromaDB, then query in plain English, Claude answers strictly from your documents, no hallucination from outside the corpus.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Claude API</span>
-          <span class="tag">ChromaDB</span>
-          <span class="tag">sentence-transformers</span>
-          <span class="tag">FastAPI</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/sec-bdc-extractor" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">09</div>
-          <span class="card-badge alt">Open source</span>
-        </div>
-        <h3>SEC BDC Extractor</h3>
-        <p>Python data pipeline for financial analysts. Pulls Business Development Company filings directly from SEC EDGAR monthly datasets and extracts NAV, NII, dividends, debt/equity ratios, and portfolio metrics into structured output, ready for modeling or comparison without touching a PDF manually.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">SEC EDGAR</span>
-          <span class="tag">Data Pipeline</span>
-          <span class="tag">Financial Data</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/writing-arena-mvp" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">10</div>
-          <span class="card-badge alt">Open source</span>
-        </div>
-        <h3>Writing Arena: Competitive Writing Platform</h3>
-        <p>Mobile-first full-stack MVP where users pay micro-fees to enter timed writing challenges, submit under a live countdown, and compete for prize pools. Built across three milestones: auth & i18n, real-time writing mechanics, and a complete payment system. Every component production-grade, not a demo.</p>
-        <div class="card-tags">
-          <span class="tag">React 19</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Redis</span>
-          <span class="tag">Socket.io</span>
-          <span class="tag">Stripe 3DS</span>
-          <span class="tag">Framer Motion</span>
-          <span class="tag">PWA</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/milldols-payment-rail" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">11</div>
-          <span class="card-badge">Live</span>
-        </div>
-        <h3>Milldols: Nigerian Payment Rail</h3>
-        <p>Production-grade payment infrastructure for Nigerian fintechs and banks. 3-layer idempotency makes duplicate charges impossible. Real-time fraud detection under 50ms. USSD offline-first for 2G networks. NIBSS NIP integration with circuit breaker and Flutterwave fallback. Proven: 5 concurrent requests, 1 transaction, zero duplicates.</p>
-        <div class="card-tags">
-          <span class="tag">Node.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Redis</span>
-          <span class="tag">BullMQ</span>
-          <span class="tag">NIBSS NIP</span>
-          <span class="tag">USSD</span>
-          <span class="tag">Fraud Detection</span>
-        </div>
-        <span class="card-link">View on GitHub &rarr;</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/real-estate-ci" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">12</div>
-          <span class="card-badge">Client project</span>
-        </div>
-        <h3>Real Estate Competitor Intelligence</h3>
-        <p>Fully automated daily CI system built for a Nigerian real estate client. Five data streams fire in parallel every morning: Google Maps, PropertyPro.ng, Twitter/X, and Instagram, collecting ~100 competitor data points, risk-scoring each one, and logging everything to Google Sheets. An hour later, Claude AI synthesises the last 24 hours into a structured executive briefing and emails it to the client automatically. Zero manual work.</p>
-        <img src="https://raw.githubusercontent.com/fenomenoo/real-estate-ci/master/screenshots/workflow-01-ingest.jpg" alt="n8n workflow screenshot" style="width:100%;border-radius:8px;margin-bottom:16px;border:1px solid var(--line);opacity:0.85;" />
-        <div class="card-tags">
-          <span class="tag">n8n</span>
-          <span class="tag">Apify</span>
-          <span class="tag">Claude AI</span>
-          <span class="tag">Google Maps API</span>
-          <span class="tag">Google Sheets</span>
-          <span class="tag">Gmail</span>
-        </div>
-        <span class="card-link">View on GitHub →</span>
-      </a>
-
-      <a href="https://github.com/fenomenoo/loud-giant-outreach" target="_blank" rel="noopener" class="featured-card reveal">
-        <div class="card-header">
-          <div class="card-num">13</div>
-          <span class="card-badge">Live &middot; Founder</span>
-        </div>
-        <h3>Loud Giant: Cold Outreach Automation</h3>
-        <p>Production outreach system I built and ran for my own AI video studio. Contacts DTC brands via Gmail API, threads every follow-up to the original email on Day 6 and Day 12, detects bounces, genuine replies, and OOO auto-replies automatically, halting sequences so no one gets over-messaged. Logs everything to a live Google Sheet. 226+ brands contacted across pet, home, furniture, food &amp; bev, and wellness. 3 warm replies in 5 weeks, no CRM, no third-party tools.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Gmail API</span>
-          <span class="tag">Sheets API</span>
-          <span class="tag">RFC 2047</span>
-        </div>
-        <span class="card-link">View on GitHub &rarr;</span>
-      </a>
-
-    </div>
+<!-- CUT LIST -->
+<section class="wrap cut" id="cut">
+ <div class="cut-grid">
+  <div class="reveal">
+   <div class="sec-head" style="margin-bottom:0"><div><p class="mono">SECTION:: <b>01 / THE CUT LIST</b></p><h2>Most tools answer who exists. Mine answers <span class="hl">who changed.</span></h2></div></div>
+   <p class="lede" style="margin-top:26px">npi-triggers pulls the federal US provider registry and finds healthcare organisations that were just created, or whose record just moved. Free, public, standard library only. Run it on the right.</p>
+   <div class="facts">
+    <div><b>Source</b>CMS NPPES, the federal public record of every US provider organisation</div>
+    <div><b>Signal</b>Two dates on every record: when it was created, and when it last changed</div>
+    <div><b>The catch</b>The API returns organisations that aren't in the state you asked for. They get discarded, not counted</div>
+    <div><b>Built</b>Unasked, against a problem two companies described in their own job listings</div>
+   </div>
   </div>
+  <div class="reveal">
+   <div class="term">
+    <div class="term-bar"><i></i><i></i><i></i><span>~/npi-triggers · python 3</span></div>
+    <div class="term-body" id="term"><span class="pr">$</span> <span class="caret"></span></div>
+    <div class="term-foot"><button class="btn acid" id="run">Run it &#9654;</button><a class="mono" href="https://github.com/fenomenoo/npi-triggers" target="_blank" rel="noopener">github.com/fenomenoo/npi-triggers &nearr;</a></div>
+   </div>
+   <div class="limit"><span>&#9998;</span><span>A changed record tells you something changed. It never tells you what. So the "changed" group is a filter, not a verdict.</span></div>
+  </div>
+ </div>
 </section>
 
-<section id="case-study">
-  <div class="container">
-    <div class="eyebrow reveal">Live case study</div>
-    <h2 class="section-title reveal">From cold email to <em>closed deal.</em></h2>
-    <p class="section-intro reveal">
-      4 active clients across UK, US, Spain, Italy and Portugal. No fabricated numbers, every stat tracked in a live dashboard.
-    </p>
+<!-- WORK -->
+<section class="wrap work" id="work">
+ <div class="sec-head reveal">
+  <div><p class="mono">SECTION:: <b>02 / THE WORK</b></p><h2>Systems I built, ran, and <span class="hl">still run.</span></h2></div>
+  <div class="rail-ctl"><button id="prev" aria-label="Previous">&larr;</button><span class="count" id="count">01 / 11</span><button id="next" aria-label="Next">&rarr;</button></div>
+ </div>
+ <div class="rail" id="rail">
 
-    <div class="case-grid reveal">
-      <div class="case-stat">
-        <div class="case-num">1,737</div>
-        <div class="case-label">Leads generated</div>
-        <div class="case-detail">UK · USA · Spain · Italy · Portugal</div>
-      </div>
-      <div class="case-stat">
-        <div class="case-num">18.5%</div>
-        <div class="case-label">Average reply rate</div>
-        <div class="case-detail">AI-personalised by Claude, sent via Gmail SMTP</div>
-      </div>
-      <div class="case-stat">
-        <div class="case-num">77</div>
-        <div class="case-label">Meetings booked</div>
-        <div class="case-detail">Vertex Digital · Crestview Talent · Keystone Realty · Novacore</div>
-      </div>
-      <div class="case-stat">
-        <div class="case-num">32</div>
-        <div class="case-label">Deals closed</div>
-        <div class="case-detail">Across digital agency, recruitment, real estate &amp; SaaS clients</div>
-      </div>
-    </div>
+  <article class="case"><div class="thumb"><span class="mono badge">OPEN SOURCE</span><div class="w-term"><span class="pr">$</span> python npi_triggers.py IN MI
 
-    <p class="case-note reveal">
-      System runs on autopilot: scrape → enrich → write → send → follow up on Day 3 and Day 7. Every touch tracked in a live Flask dashboard deployed on Vercel.
-    </p>
-  </div>
+  IN: 464 returned, 339 located in IN
+  MI: 482 returned, 450 located in MI
+
+  789 organisations total
+  38 newly enumerated
+  41 established but changed</div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº01</span><span>2026</span></div><h3>npi-triggers</h3><p>Finds US healthcare organisations that recently changed, from the federal provider registry. The README leads with what the data cannot tell you.</p>
+   <div class="tags"><span>Python</span><span>CMS NPPES</span><span>MIT</span></div><a class="go" href="https://github.com/fenomenoo/npi-triggers" target="_blank" rel="noopener"><span>Open on GitHub</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge l">DELIVERED</span><div class="w-sheet"><div class="fx"><b>fx</b><span id="fx">=IFERROR((B5-C5)/C5,0)</span></div>
+   <table><tr><td>Accepted leads</td><td>Actual</td><td>Target</td><td class="ok">OK</td></tr><tr><td>Blended CPL</td><td>Actual</td><td>Target</td><td class="ok">OK</td></tr><tr><td>Lead to retainer rate</td><td>Actual</td><td>Target</td><td class="ok">OK</td></tr><tr><td>Cost per retained case</td><td>Actual</td><td>Target</td><td class="ok">OK</td></tr><tr><td>Duplicate rate</td><td>Actual</td><td>Target</td><td class="ok">OK</td></tr></table>
+   <div class="tabs"><span>Summary</span><span>Assumptions</span><span>Daily Volume</span><span>Channel Performance</span><span>DMA</span><span>Lead Quality</span><span>Funnel</span></div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº02</span><span>2026</span></div><h3>Weekly lead-gen reporting model</h3><p>Cost per lead, per qualified lead and per signed case, by channel. 122 live formulas, zero errors, checked by recalculation. One published benchmark left out on purpose, with the reason written down.</p>
+   <div class="tags"><span>Excel</span><span>openpyxl</span><span>Python</span></div><span class="go muted"><span>Built unasked, sent to the founder</span><span>&#9679;</span></span></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">IN DAILY USE</span><div class="w-checks" id="checks"><div>ICP fit</div><div>Live domain</div><div>Not a duplicate</div><div>Brand owner set</div><div>Decision maker</div><div>Email verified</div><div>Not a customer</div><div>Ready to send</div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº03</span><span>2025</span></div><h3>PF Team Ife, lead-gen CRM</h3><p>The CRM a 10-person team across ten award and media brands runs on. Stage tracking, role permissions, CSV ingest and an 8-step eligibility check. Has screened 90,000+ companies.</p>
+   <div class="tags"><span>Next.js 14</span><span>TypeScript</span><span>Supabase</span><span>Framer Motion</span></div><span class="go muted"><span>Private, internal tool</span><span>&#9679;</span></span></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">IN PRODUCTION</span><div class="w-seq" id="seq"><div class="row"><span class="day">DAY 0</span><span class="mail">First email<b>&#10003;</b></span></div><div class="row"><span class="day">DAY 6</span><span class="mail">Follow-up, same thread<b>&#10003;</b></span></div><div class="row"><span class="day">DAY 12</span><span class="mail">Follow-up, same thread<b>&#10003;</b></span></div><div class="row"><span class="day">REPLY</span><span class="mail stop">Sequence stops<b>&#9632;</b></span></div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº04</span><span>2026</span></div><h3>Outbound engine for an AI creative studio</h3><p>Researches brands, sends through the Gmail API, threads every follow-up to the original, and stops on a reply, a bounce or an out-of-office. Logs everything to a live sheet.</p>
+   <div class="tags"><span>Python</span><span>Gmail API</span><span>Sheets API</span></div><span class="go muted"><span>Client work, private</span><span>&#9679;</span></span></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">LIVE</span><img src="assets/work/leadgen.jpg" alt="LeadGen AI campaign dashboard" loading="lazy"></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº05</span><span>2025</span></div><h3>LeadGen AI</h3><p>B2B lead engine. Maps API first, Playwright as the fallback, crawls eight paths per site, eleven-rule email validation, and a dashboard to run campaigns from.</p>
+   <div class="tags"><span>Python</span><span>Playwright</span><span>Flask</span><span>Claude API</span></div><a class="go" href="https://lead-generation-ai-gamma.vercel.app" target="_blank" rel="noopener"><span>Open the dashboard</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">LIVE</span><img src="assets/work/mosnip.jpg" alt="mosnip, AI video clipping tool" loading="lazy"></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº06</span><span>2026</span></div><h3>mosnip</h3><p>Paste a YouTube link. It finds the strongest moments with AI and cuts them into clips automatically.</p>
+   <div class="tags"><span>TypeScript</span><span>Next.js</span><span>AI</span></div><a class="go" href="https://mosnip.vercel.app" target="_blank" rel="noopener"><span>Try it</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">LIVE</span><img src="assets/work/rankforge.jpg" alt="RankForge landing page" loading="lazy"></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº07</span><span>2026</span></div><h3>RankForge</h3><p>Connects to Google Search Console, finds every keyword one push from page one, runs competitor analysis through Claude, writes the content, and loops weekly.</p>
+   <div class="tags"><span>Python</span><span>Claude API</span><span>GSC API</span><span>Typer CLI</span></div><a class="go" href="https://rank-forge.netlify.app/" target="_blank" rel="noopener"><span>Visit</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">OPEN SOURCE</span><div class="w-seq"><div class="row"><span class="day">FIND</span><span class="mail on">Brands by niche, scraped<b>&#10003;</b></span></div><div class="row"><span class="day">DAY 0</span><span class="mail on">Pitch, written with Claude<b>&#10003;</b></span></div><div class="row"><span class="day">DAY 3</span><span class="mail on">Follow-up<b>&#10003;</b></span></div><div class="row"><span class="day">DAY 7</span><span class="mail on">Follow-up<b>&#10003;</b></span></div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº08</span><span>2026</span></div><h3>Brand Deal Machine</h3><p>Brand outreach for creators, end to end. Finds brands by niche, writes a three-email pitch sequence, sends it, and tracks every brand from first contact to deal.</p>
+   <div class="tags"><span>Python</span><span>Flask</span><span>Claude API</span><span>SQLite</span></div><a class="go" href="https://github.com/fenomenoo/brand-deal-machine" target="_blank" rel="noopener"><span>Open on GitHub</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">OPEN SOURCE</span><div class="w-timer"><div><div class="t" id="timer">00:30</div><div class="bar"><i></i></div><small>Round closes · entries locked</small></div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº09</span><span>2026</span></div><h3>Writing Arena</h3><p>Mobile-first competitive writing platform. Real-time countdowns, Stripe payments, an escrow wallet and content moderation.</p>
+   <div class="tags"><span>JavaScript</span><span>PostgreSQL</span><span>Redis</span><span>Stripe</span></div><a class="go" href="https://github.com/fenomenoo/writing-arena-mvp" target="_blank" rel="noopener"><span>Open on GitHub</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">OPEN SOURCE</span><div class="w-cols"><div class="h"><span>NAV</span><span>NII</span><span>DIV</span><span>D/E</span><span>PORT</span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><div class="r"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº10</span><span>2026</span></div><h3>SEC BDC Extractor</h3><p>Pulls NAV, net investment income, dividends, debt to equity and portfolio metrics for business development companies out of SEC EDGAR data sets.</p>
+   <div class="tags"><span>Python</span><span>SEC EDGAR</span><span>XBRL</span></div><a class="go" href="https://github.com/fenomenoo/sec-bdc-extractor" target="_blank" rel="noopener"><span>Open on GitHub</span><span>&nearr;</span></a></div></article>
+
+  <article class="case"><div class="thumb"><span class="mono badge">OPEN SOURCE</span><div class="w-spring"><i></i><i></i><i></i><i></i><i></i></div></div>
+   <div class="case-body"><div class="mono case-top"><span>Nº11</span><span>2026</span></div><h3>Remotion Studio</h3><p>A 60-second marketing video written entirely in code. Seven scenes, spring physics, version-controlled like any other software.</p>
+   <div class="tags"><span>TypeScript</span><span>React</span><span>Remotion</span></div><a class="go" href="https://github.com/fenomenoo/remotion-studio" target="_blank" rel="noopener"><span>Open on GitHub</span><span>&nearr;</span></a></div></article>
+ </div>
+
+ <div class="more reveal">
+  <span class="mono">MORE:: SMALLER SYSTEMS, ALL RUNNING OR SHIPPED</span>
+  <div class="more-row"><b>Real-estate market intelligence</b><span>Scores listings from five sources and sends a morning briefing. Running daily since March 2025.</span><em>n8n · Apify · Claude</em></div>
+  <div class="more-row"><b>AI cold email, no-code</b><span>Pulls leads from a sheet, researches each one, drafts the email.</span><em>n8n · OpenRouter</em></div>
+  <div class="more-row"><b>RAG pipeline</b><span>Answers from its own documents.</span><em>Python</em></div>
+  <div class="more-row"><b>Real-estate lead nurture</b><span>Captures leads, enriches them with AI, runs the follow-up.</span><em>n8n · Claude · Gmail</em></div>
+  <div class="more-row"><b>Job application screening</b><span>Scores and routes applicants, alerts on strong matches.</span><em>Zapier · Slack</em></div>
+  <div class="more-row"><b>Daily content pipeline</b><span>RSS in, AI-written brief out, every morning.</span><em>Make · OpenRouter</em></div>
+ </div>
 </section>
 
-<section id="workflows">
-  <div class="container">
-    <div class="eyebrow reveal">Workflow automations</div>
-    <h2 class="section-title reveal">Running on <em>autopilot.</em></h2>
-    <p class="section-intro reveal">
-      No-code and low-code systems I've shipped across Make.com, n8n, and Zapier.
-      Each one replaces hours of manual work with a trigger and a schedule.
-    </p>
-
-    <div class="work-grid">
-      <div class="work-item reveal">
-        <div class="work-num">01</div>
-        <div class="work-body">
-          <h3>Daily football content pipeline</h3>
-          <p>Scrapes RSS feeds, passes stories through an AI writer, and emails a publish-ready brief every morning. Runs autonomously on Make.com.</p>
-          <div class="work-tags">
-            <span class="tag">Make.com</span>
-            <span class="tag">OpenRouter</span>
-            <span class="tag">RSS</span>
-            <span class="tag">Gmail API</span>
-          </div>
-        </div>
-        <div class="work-meta">In production</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num">02</div>
-        <div class="work-body">
-          <h3>AI cold email system (no-code)</h3>
-          <p>Pulls leads from Google Sheets, researches each prospect, and drafts personalized emails through OpenRouter. A lighter alternative to the coded version.</p>
-          <div class="work-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">OpenRouter</span>
-            <span class="tag">Google Sheets</span>
-          </div>
-        </div>
-        <div class="work-meta">In production</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num">03</div>
-        <div class="work-body">
-          <h3>Job application screening</h3>
-          <p>Candidates submit a Google Form, Zapier scores and routes them into Sheets with Slack alerts for strong matches. No more inbox triage.</p>
-          <div class="work-tags">
-            <span class="tag">Zapier</span>
-            <span class="tag">Google Forms</span>
-            <span class="tag">Slack</span>
-          </div>
-        </div>
-        <div class="work-meta">Shipped</div>
-      </div>
-
-      <a href="https://github.com/fenomenoo/ai-real-estate-lead-gen" target="_blank" rel="noopener" class="work-item reveal" style="text-decoration: none; color: inherit;">
-        <div class="work-num">04</div>
-        <div class="work-body">
-          <h3>Real estate lead nurture</h3>
-          <p>Automated lead generation and follow-up system for real estate. Captures new leads, enriches them with AI, and drives a nurture sequence across Gmail, all orchestrated in n8n. No lead goes cold.</p>
-          <div class="work-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Claude AI</span>
-            <span class="tag">Gmail</span>
-            <span class="tag">Google Sheets</span>
-          </div>
-        </div>
-        <div class="work-meta">On GitHub →</div>
-      </a>
-
-      <div class="work-item reveal">
-        <div class="work-num">05</div>
-        <div class="work-body">
-          <h3>Currency alert bot</h3>
-          <p>Pings USD/NGN and GBP/NGN rates to Telegram every morning, with threshold triggers for unusual moves. Built on n8n + ExchangeRate-API.</p>
-          <div class="work-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Telegram</span>
-            <span class="tag">ExchangeRate API</span>
-          </div>
-        </div>
-        <div class="work-meta">In production</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num">06</div>
-        <div class="work-body">
-          <h3>Reuters news digest</h3>
-          <p>Curates Reuters headlines by topic, summarizes with an LLM, and delivers a clean morning digest. Replaces 20 minutes of scrolling.</p>
-          <div class="work-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">RSS</span>
-            <span class="tag">AI Summarization</span>
-          </div>
-        </div>
-        <div class="work-meta">Shipped</div>
-      </div>
-
-      <a href="https://github.com/fenomenoo/real-estate-ci" target="_blank" rel="noopener" class="work-item reveal" style="text-decoration: none; color: inherit;">
-        <div class="work-num">07</div>
-        <div class="work-body">
-          <h3>Real estate competitor intelligence</h3>
-          <p>Built for a client in the Nigerian real estate market. Scrapes Google Maps, PropertyPro.ng, Twitter/X and Instagram daily across Lagos and Abuja. Risk-scores ~100 data points and feeds them to Claude AI, which writes and emails a full executive briefing every morning, competitor moves, pricing signals, market opportunities.</p>
-          <div class="work-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Apify</span>
-            <span class="tag">Claude AI</span>
-            <span class="tag">Google Sheets</span>
-            <span class="tag">Gmail</span>
-          </div>
-        </div>
-        <div class="work-meta">On GitHub →</div>
-      </a>
-    </div>
-  </div>
+<!-- VIDEOS -->
+<section class="dark" id="videos">
+ <div class="dots"></div>
+ <div class="wrap videos">
+  <div class="sec-head reveal"><div><p class="mono">SECTION:: <b>03 / PITCH VIDEOS</b></p><h2>Each one argues one idea, and names who it cuts.</h2></div><p class="lede">Eleven made in 2026, each for one company. Research, script, design, code, sound and render all mine. Hover to preview, click to watch with sound.</p></div>
+  <div class="vgrid" id="vgrid"></div>
+  <p class="mono vnote">Built as HTML and CSS scenes, rendered headless through a Node pipeline I wrote.</p>
+ </div>
 </section>
 
-<section id="experience">
-  <div class="container">
-    <div class="eyebrow reveal">Experience</div>
-    <h2 class="section-title reveal">Where I've <em>worked.</em></h2>
-    <p class="section-intro reveal">Sales first, code second, the background that makes the automation actually useful.</p>
-
-    <div class="work-grid">
-
-      <div class="work-item reveal">
-        <div class="work-num" style="font-size: 13px; padding-top: 8px; line-height: 1.4; text-align: right; color: var(--muted);">Jan 2025<br>Present</div>
-        <div class="work-body">
-          <h3>Freelance Python Automation Developer</h3>
-          <p style="font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 14px;">Self-Employed, Lagos, Nigeria (Remote)</p>
-          <p>Built and shipped Brand Deal Machine and Lead Generation AI System independently, full-stack automation from database design to web UI to CLI. Integrated external APIs (Claude, Google Maps, Gmail SMTP) into production-ready Python systems. Designed relational database schemas, rate-limited email pipelines, and dual-mode scraping fallback chains.</p>
-        </div>
-        <div class="work-meta">Active</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num" style="font-size: 13px; padding-top: 8px; line-height: 1.4; text-align: right; color: var(--muted);">Jan 2026<br>Present</div>
-        <div class="work-body">
-          <h3>Business Development Executive</h3>
-          <p style="font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 14px;">PAN Finance, Lagos, Nigeria</p>
-          <p>Generate and qualify leads for financial products through structured outreach and prospecting. Built <strong>PF Team Ife</strong>, the internal Next.js / Supabase lead-management platform now in daily use across the company’s 10 award and media brands, handling up to 5,000 leads per batch. Track and report on pipeline metrics: leads generated, meetings booked, conversion rates, revenue.</p>
-        </div>
-        <div class="work-meta">Active</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num" style="font-size: 13px; padding-top: 8px; line-height: 1.4; text-align: right; color: var(--muted);">May 2025<br>Sep 2025</div>
-        <div class="work-body">
-          <h3>Sales Representative, Lead Generation</h3>
-          <p style="font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 14px;">BuildingYourBusiness.Online, Remote</p>
-          <p>Ran outbound lead generation via cold email, LinkedIn, and job boards for a digital marketing SaaS company. Targeted companies lacking digital presence; closed recurring subscription clients and hit revenue targets. This role showed me firsthand the cost of manual outreach, which led directly to building my automation systems.</p>
-        </div>
-        <div class="work-meta">2025</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num" style="font-size: 13px; padding-top: 8px; line-height: 1.4; text-align: right; color: var(--muted);">Oct 2025<br>Nov 2025</div>
-        <div class="work-body">
-          <h3>Sales Representative</h3>
-          <p style="font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 14px;">WMarkets</p>
-          <p>Prospected and engaged forex trading clients through structured outreach; converted qualified leads into active clients. Maintained CRM pipeline and reported performance metrics to management.</p>
-        </div>
-        <div class="work-meta">2025</div>
-      </div>
-
-      <div class="work-item reveal">
-        <div class="work-num" style="font-size: 13px; padding-top: 8px; line-height: 1.4; text-align: right; color: var(--muted);">Aug 2024<br>Mar 2025</div>
-        <div class="work-body">
-          <h3>Assistant Project Supervisor</h3>
-          <p style="font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 14px;">Federal Ministry of Works, Gusau, NYSC</p>
-          <p>Assisted in project planning, scheduling, and milestone tracking for infrastructure projects. Reviewed project plans, supported resource allocation, tracked expenses, and prepared progress reports.</p>
-        </div>
-        <div class="work-meta">NYSC</div>
-      </div>
-
-    </div>
-  </div>
+<!-- NOTES -->
+<section class="wrap notes" id="notes">
+ <div class="dots"></div>
+ <div class="sec-head reveal" style="position:relative"><div><p class="mono">SECTION:: <b>04 / NOTES</b></p><h2>What people wrote back.</h2></div><p class="lede">Quoted word for word from their emails. Drag them around.</p></div>
+ <div class="board" id="board"></div>
 </section>
 
-<section id="about">
-  <div class="container">
-    <div class="eyebrow reveal">About</div>
-    <h2 class="section-title reveal" style="margin-bottom: 56px;">Builder, <em>not talker.</em></h2>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I'm a Python automation developer and full-stack web builder. My background isn't computer science, it's sales. Cold email, LinkedIn prospecting, CRM pipeline work across multiple companies. I understood these workflows deeply, because I lived inside them for years.</p>
-        <p>Then I got tired of doing it all by hand. So I taught myself Python, then Next.js, Supabase, TypeScript. Over the past year I've built end-to-end automation systems <em>and</em> full-stack platforms: PF Team Ife, an internal lead-management tool now serving 10 award and media brands, and Cleared, a live B1/B2 visa product built and shipped solo. Not demos. Systems that run in production and come back with receipts.</p>
-        <blockquote>I don't ship demos. I ship systems that are still running six months later.</blockquote>
-        <p>No CS degree. No bootcamp. Just GitHub commits and client deadlines that wouldn't wait. Open to remote roles, freelance projects, and short-term automation contracts.</p>
-      </div>
-
-      <div class="stack-block reveal">
-        <h4>Languages</h4>
-        <ul class="stack-list">
-          <li>Python 3</li>
-          <li>TypeScript</li>
-          <li>JavaScript</li>
-          <li>SQL</li>
-          <li>HTML/CSS</li>
-        </ul>
-        <h4>Frameworks & Libraries</h4>
-        <ul class="stack-list">
-          <li>Next.js 14</li>
-          <li>React 19</li>
-          <li>Node.js</li>
-          <li>Express</li>
-          <li>Vite</li>
-          <li>Tailwind CSS</li>
-          <li>Supabase</li>
-          <li>Flask</li>
-          <li>Remotion</li>
-          <li>Framer Motion</li>
-          <li>Playwright</li>
-          <li>BeautifulSoup4</li>
-          <li>Requests</li>
-          <li>Jinja2</li>
-          <li>argparse</li>
-        </ul>
-        <h4>AI & Automation</h4>
-        <ul class="stack-list">
-          <li>Claude API</li>
-          <li>OpenRouter</li>
-          <li>Prompt Engineering</li>
-          <li>n8n</li>
-          <li>Make.com</li>
-          <li>Zapier</li>
-          <li>GoHighLevel</li>
-          <li>Zoho CRM</li>
-          <li>Chatbase</li>
-        </ul>
-        <h4>Data & APIs</h4>
-        <ul class="stack-list">
-          <li>PostgreSQL</li>
-          <li>SQLite</li>
-          <li>MySQL</li>
-          <li>Redis</li>
-          <li>REST APIs</li>
-          <li>Socket.io</li>
-          <li>Stripe API</li>
-          <li>Google Maps API</li>
-          <li>Google Search Console</li>
-          <li>Gmail SMTP</li>
-          <li>Google Workspace</li>
-          <li>Paystack</li>
-        </ul>
-        <h4>Sales & Outreach</h4>
-        <ul class="stack-list">
-          <li>Cold email</li>
-          <li>LinkedIn prospecting</li>
-          <li>CRM pipeline management</li>
-          <li>Telegram</li>
-          <li>Slack</li>
-          <li>Railway</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<!-- HOW -->
+<section class="wrap how" id="how">
+ <div class="sec-head reveal"><div><p class="mono">SECTION:: <b>05 / HOW I WORK</b></p><h2>Three ways in. <span class="hl">One standard.</span></h2></div><p class="lede">Pick the one closest to your problem and send me your market. Every job starts the same way: I read before I write.</p></div>
+ <div class="tickets">
+  <div class="ticket reveal"><span class="mono side">FORM 01 · GTM</span><p class="mono top">FORM:: 01 / GTM ENGINE</p><h3>Outbound that finds the right buyers</h3><p>Account research, verified contacts and outreach, run end to end.</p>
+   <ul><li>A target list with the cut list and reasons</li><li>Every email verified one at a time</li><li>Openers written from the prospect's own market</li><li>Follow-up that stops the moment someone replies</li></ul><a class="go" href="#contact">Start this one &rarr;</a></div>
+  <div class="ticket reveal"><span class="mono side">FORM 02 · BUILD</span><p class="mono top">FORM:: 02 / AI-NATIVE BUILDS</p><h3>The systems behind the pipeline</h3><p>CRMs, research pipelines, sequencers and dashboards your team actually uses.</p>
+   <ul><li>Internal tools on Next.js and Supabase</li><li>Automations in n8n, Make or plain Python</li><li>Claude and other models inside real workflows</li><li>If something in the funnel breaks, I fix the code</li></ul><a class="go" href="#contact">Start this one &rarr;</a></div>
+  <div class="ticket reveal"><span class="mono side">FORM 03 · VIDEO</span><p class="mono top">FORM:: 03 / PITCH VIDEOS</p><h3>An argument your buyer can watch</h3><p>A short video for one company, built from public facts, that goes out with the outreach.</p>
+   <ul><li>Research and script from the public record</li><li>Designed and coded scene by scene</li><li>Original sound, voice and music mix</li><li>Social cuts from the same master</li></ul><a class="go" href="#contact">Start this one &rarr;</a></div>
+ </div>
+ <div class="refuse reveal">
+  <h3>What I won't do.</h3>
+  <ol>
+   <li><div><b>Guess an email address</b><span>A bounce costs the sending domain. Unconfirmed addresses get flagged, not sent.</span></div></li>
+   <li><div><b>Hand over a list without the cut list</b><span>Who I removed, and why, comes with every list.</span></div></li>
+   <li><div><b>Send anything in your name you haven't seen</b><span>Research first. Nothing goes out without your approval.</span></div></li>
+   <li><div><b>Show you a number I can't source</b><span>If a figure can't be checked, it doesn't go in front of you.</span></div></li>
+  </ol>
+ </div>
 </section>
 
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="eyebrow reveal" style="justify-content: center;">Contact</div>
-    <h2 class="section-title serif reveal">Have a <em>workflow</em> in mind?</h2>
-    <p class="section-intro reveal" style="margin-left: auto; margin-right: auto; margin-bottom: 40px;">
-      Tell me the repetitive thing you'd rather not do. I'll tell you if I can automate it, and how soon.
-    </p>
-    <a href="mailto:holaigmi@gmail.com" class="contact-email reveal">holaigmi@gmail.com</a>
-    <div class="socials reveal">
-      <a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork</a>
-      <a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub</a>
-    </div>
+<!-- ABOUT -->
+<section class="wrap about" id="about" style="border-top:1px solid var(--line)">
+ <div class="about-grid">
+  <div class="idcard reveal" id="idcard" role="button" tabindex="0" aria-label="Flip the ID card">
+   <div class="in">
+    <div class="face front"><div class="hole"></div><div class="mono" style="display:flex;justify-content:space-between"><span>ID:: Nº0001</span><span>REMOTE</span></div><div class="nm">Gbolahan<br>Lawal.</div><div class="rl">GTM engineer<br>AI-native builder</div><div class="bc"></div><div class="flip-hint">tap to flip it</div></div>
+    <div class="face back"><h4>RECORD:: CAREER TO DATE</h4>
+     <div class="rec"><span>Leads sourced</span><b>2,000+</b></div>
+     <div class="rec"><span>Meetings booked</span><b>90+</b></div>
+     <div class="rec"><span>Deals closed</span><b>37</b></div>
+     <div class="rec"><span>Companies screened by a CRM I built</span><b>90,000+</b></div>
+     <div class="rec"><span>Pitch videos made in 2026</span><b>11</b></div>
+     <small>Self-reported totals across outbound for SaaS, finance and media clients. References available on request.</small></div>
+   </div>
   </div>
+  <div class="about-copy reveal">
+   <p class="mono" style="color:var(--ink2);margin-bottom:18px">SECTION:: <b style="color:var(--ink)">06 / ABOUT</b></p>
+   <p>I came up through sales, not computer science. Years of cold email, LinkedIn prospecting and CRM work by hand, until the volume pushed me to automate it.</p>
+   <p>Now I do both halves. I find companies the customers they can't find themselves, and I build the CRM, the research pipeline, the verification and the follow-up that make it repeatable. I don't hand over a list and walk away.</p>
+   <p class="dim">The part I care about most is subtraction. Anyone can produce a list of who to call. I can tell you who I took off it, and why.</p>
+   <div class="timeline">
+    <div class="tl"><div class="when"><span class="now">● 2026 to now</span></div><div><b>Lead Generation Specialist</b><span>US media and creative company · outbound end to end, paid per booked meeting</span></div></div>
+    <div class="tl"><div class="when">Jan to Aug 2026</div><div><b>Business Development Executive</b><span>PAN Finance · built the team's lead-gen CRM</span></div></div>
+    <div class="tl"><div class="when">2025 to now</div><div><b>Freelance automation developer</b><span>US and UK clients · production automation, full stack</span></div></div>
+    <div class="tl"><div class="when">May to Sep 2025</div><div><b>Sales Representative, Lead Generation</b><span>BuildingYourBusiness.Online · outbound for a marketing SaaS</span></div></div>
+   </div>
+   <div class="stack"><span>Claude Code</span><span>n8n</span><span>Apify</span><span>Playwright</span><span>Python</span><span>TypeScript</span><span>Next.js</span><span>Supabase</span><span>SQL</span><span>Gmail API</span><span>Make</span><span>Zapier</span><span>Puppeteer</span><span>FFmpeg</span><span>Remotion</span><span>Figma</span></div>
+  </div>
+ </div>
 </section>
 
-<footer>
-  <div class="container">
-    <em>Designed & built by Gbolahan Lawal</em> · Lagos, Nigeria · 2026
+<!-- CONTACT -->
+<section class="dark" id="contact">
+ <div class="dots"></div>
+ <div class="wrap contact">
+  <p class="mono" style="color:#8FB09A">SECTION:: <b style="color:var(--acid)">07 / CONTACT</b></p>
+  <h2 class="reveal">Send me your <em>market.</em></h2>
+  <p class="lede reveal" style="margin-top:26px;color:#A9C2B1">Tell me who you sell to. I'll come back with who I'd call first, and who I'd cut.</p>
+  <div class="row reveal">
+   <button class="btn acid copy" id="copy"><span class="ok">Copied</span>sendtohola@gmail.com <span>&#10697;</span></button>
+   <a class="btn ghost" href="mailto:sendtohola@gmail.com?subject=My%20market">Write an email &rarr;</a>
+   <a class="btn ghost" href="assets/gbolahan-lawal-cv.pdf" target="_blank" rel="noopener">Download CV &darr;</a>
   </div>
-</footer>
+  <div class="socials"><nav><a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn &nearr;</a><a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub &nearr;</a><a href="https://www.youtube.com/@hola_gmi" target="_blank" rel="noopener">YouTube &nearr;</a><a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork &nearr;</a></nav><span class="mono" style="font-size:11px">Designed and coded by hand · Gbolahan Lawal, 2026</span></div>
+ </div>
+</section>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true"><button class="x" id="mx" aria-label="Close">&times;</button><video id="mv" controls playsinline></video><p class="mono cap" id="mc"></p></div>
 
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const VIDEOS=[
+ {k:"aba",sec:"US healthcare billing",arg:"789 organisations pulled from a federal registry, cut to four on screen. The removals are held longest.",clip:1,wide:1,yt:"https://youtu.be/4Fl2Hf-ClKA"},
+ {k:"caddi",sec:"Industrial drawing data",arg:"Fifteen companies. Three crossed off, with the trigger and the date on each one left.",clip:1},
+ {k:"oximy",sec:"Enterprise AI governance",arg:"Demand you can't sort isn't demand yet. Ends on a board: revive, pass, block.",clip:1},
+ {k:"stable",sec:"Business-address infrastructure",arg:"Cuts a company from its own target list, because it was already a customer.",clip:1},
+ {k:"remit",sec:"Physical therapy billing",arg:"31 new organisations, 22 long-running ones that just changed. Who to call this week.",clip:1},
+ {k:"sponsor",sec:"Visa-sponsored hiring",arg:"Somebody chose to put it there. Reading one line in a job post as a buying signal.",clip:1},
+ {k:"ordo",sec:"Consumer AI hardware",arg:"A go-to-market plan shown as a video instead of described in an email.",clip:0}
+];
+const NOTES=[
+ {q:"THANK YOU for the incredible work you've been doing. We are grateful and impressed!",n:"Erik Weiner",r:"Loud Giant",c:"a"},
+ {q:"The original email, the followup emails, the choices of which businesses to contact were all excellent.",n:"Jody Brockway",r:"P.A. Bootcamp",c:""},
+ {q:"It's a very unique and interesting email you send. I see potential.",n:"Paulino Valdés",r:"CEO, Gravity Gardens",c:"l"},
+ {q:"You've been crushing it with the sends, we're really impressed by the consistency, quality, and quantity.",n:"Erik Weiner",r:"Loud Giant",c:""},
+ {q:"Good pitch, and those are exactly our segments.",n:"Hans Ibarra",r:"Founder, Dialogus",c:"a"},
+ {q:"Thanks for this detailed plan, it looks very solid.",n:"Paulino Valdés",r:"CEO, Gravity Gardens",c:""},
+ {q:"We definitely are looking to you for the best plan of action and trust your skills!",n:"Erik Weiner",r:"Loud Giant",c:"l"}
+];
 
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => io.observe(el));
+/* nav */
+const nav=$('#nav');addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>40),{passive:true});
+const secs=['cut','work','videos','notes','how','about'].map(id=>document.getElementById(id));
+const navIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});secs.forEach(s=>navIO.observe(s));
+
+/* headline word reveal */
+(()=>{const h=$('#h1');const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim()){f.append(t);return}const w=document.createElement('span');w.className='w';const i=document.createElement('span');i.textContent=t;w.append(i);f.append(w)});c.replaceWith(f)}else walk(c)})};walk(h);
+ $$('#h1 .w>span').forEach((s,i)=>s.style.transitionDelay=(i*55)+'ms');requestAnimationFrame(()=>setTimeout(()=>{h.classList.add('in');setTimeout(()=>$('#h1hl').classList.add('on'),700)},120))})();
+
+/* reveals + highlights */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.hl').forEach(h=>setTimeout(()=>h.classList.add('on'),500));io.unobserve(e.target)}}),{threshold:.15});
+$$('.reveal').forEach(r=>io.observe(r));
+
+/* hero print stack */
+(()=>{const desk=$('#desk');const order=[0,1,2,4,3,5,6];
+ const prints=order.map(i=>{const v=VIDEOS[i];const f=document.createElement('figure');f.className='print';
+  f.innerHTML=`<span class="tape"></span><img src="assets/stills/${v.k}.jpg" alt="Still from a pitch video, ${v.sec}"><span class="play"></span><figcaption class="mono"><span>Nº${String(i+1).padStart(2,'0')}</span><span>${v.sec}</span></figcaption>`;
+  f.addEventListener('click',()=>{if(f===stack[0])openVideo(v)});desk.insertBefore(f,$('#note'));return f});
+ let stack=prints.slice();const pose=[[0,0,-3,1],[78,-30,6,.95],[-80,-20,-9,.92],[10,-46,3,.88]];
+ const lay=()=>stack.forEach((el,k)=>{const q=pose[k]||pose[3];el.style.zIndex=30-k;el.classList.toggle('front',k===0);el.style.transform=`translate(${q[0]}px,${q[1]}px) rotate(${q[2]}deg) scale(${q[3]})`;el.style.opacity=k>3?0:1});
+ lay();let paused=false;desk.addEventListener('mouseenter',()=>paused=true);desk.addEventListener('mouseleave',()=>paused=false);
+ setInterval(()=>{if(paused||document.hidden)return;const top=stack[0];top.style.transform='translate(-90px,170px) rotate(-16deg) scale(.9)';top.style.opacity=0;setTimeout(()=>{stack.push(stack.shift());lay()},420)},3400);
+ let ni=0;const nq=$('#noteQ'),nw=$('#noteW');const showNote=()=>{const n=NOTES[ni%NOTES.length];nq.textContent=n.q;nw.textContent=`${n.n} · ${n.r}`};showNote();
+ setInterval(()=>{if(document.hidden)return;nq.style.opacity=nw.style.opacity=0;setTimeout(()=>{ni++;showNote();nq.style.opacity=nw.style.opacity=1},400)},6500)})();
+
+/* marquee */
+(()=>{const t=['Claude Code','n8n','Apify','Playwright','Supabase','Next.js','Gmail API','Google Sheets','Snov.io','Prospeo','Make','Zapier','Python','Puppeteer','FFmpeg','Remotion','CMS NPPES','SEC EDGAR'];const h=t.map(x=>`<span>${x}</span>`).join('');$('#mq').innerHTML=h+h})();
+
+/* terminal */
+(()=>{const term=$('#term'),btn=$('#run');let busy=false;
+ const lines=[["cmd","python npi_triggers.py IN MI"],["dim","Run date 2026-10-04. Taxonomy: Behavior Analyst"],["",""],["","  IN: 464 returned, 339 actually located in IN"],["","  MI: 482 returned, 450 actually located in MI"],["",""],["big","  789 organisations total"],["big","  38 newly enumerated within 180 days"],["big","  41 established but changed within 120 days"],["",""],["dim","  wrote npi_triggers.json and tables.md"]];
+ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ async function run(){if(busy)return;busy=true;btn.textContent='Running…';term.innerHTML='';
+  for(const [c,t] of lines){if(c==='cmd'){const p=document.createElement('div');p.innerHTML='<span class="pr">$</span> ';term.append(p);for(const ch of t){p.append(ch);await sleep(38)}await sleep(500);continue}
+   const d=document.createElement('div');if(c)d.className=c;d.textContent=t||' ';term.append(d);await sleep(c==='big'?380:160)}
+  const e=document.createElement('div');e.innerHTML='<span class="pr">$</span> <span class="caret"></span>';term.append(e);btn.innerHTML='Run it again &#9654;';busy=false}
+ btn.addEventListener('click',run);
+ new IntersectionObserver((es,o)=>es.forEach(x=>{if(x.isIntersecting){run();o.disconnect()}}),{threshold:.5}).observe(term)})();
+
+/* rail */
+(()=>{const r=$('#rail'),cards=$$('#rail .case');const step=()=>cards[0].getBoundingClientRect().width+22;
+ $('#next').onclick=()=>r.scrollBy({left:step(),behavior:'smooth'});$('#prev').onclick=()=>r.scrollBy({left:-step(),behavior:'smooth'});
+ const upd=()=>{const i=Math.min(cards.length,Math.round(r.scrollLeft/step())+1);$('#count').textContent=String(i).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0')};r.addEventListener('scroll',upd,{passive:true});upd();
+ let down=false,sx=0,sl=0,moved=0;r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft;moved=0});
+ addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.abs(dx);if(moved>5)r.classList.add('dragging');r.scrollLeft=sl-dx});
+ addEventListener('pointerup',()=>{if(!down)return;down=false;setTimeout(()=>r.classList.remove('dragging'),0);const s=step();r.scrollTo({left:Math.round(r.scrollLeft/s)*s,behavior:'smooth'})});
+ r.addEventListener('click',e=>{if(moved>5){e.preventDefault();e.stopPropagation()}},true)})();
+
+/* widgets */
+(()=>{const cs=$$('#checks div');let i=0;setInterval(()=>{if(i>=cs.length){cs.forEach(c=>c.classList.remove('on'));i=0;return}cs[i++].classList.add('on')},520)})();
+(()=>{const ms=$$('#seq .mail');let i=0;setInterval(()=>{if(i>=ms.length){ms.forEach(m=>m.classList.remove('on'));i=0;return}ms[i++].classList.add('on')},900)})();
+(()=>{const t=$('#timer');let s=30;setInterval(()=>{s=s<=0?30:s-1;t.textContent='00:'+String(s).padStart(2,'0')},1000)})();
+(()=>{const f=['=IFERROR((B5-C5)/C5,0)','=IF(B5<C5,"CHECK","OK")',"=COUNTIF('Lead Quality'!L5:L15,\"FLAG\")",'=Assumptions!$B$6'];let i=0;const el=$('#fx');setInterval(()=>{el.textContent=f[++i%f.length]},2200)})();
+
+/* videos grid */
+(()=>{const g=$('#vgrid');VIDEOS.forEach((v,i)=>{const c=document.createElement('div');c.className='vcard reveal'+(v.wide?' wide':'');
+ c.innerHTML=`<div class="media"><img src="assets/stills/${v.k}.jpg" alt="Still, ${v.sec}" loading="lazy">${v.clip?`<video muted loop playsinline preload="none" src="assets/clips/${v.k}.mp4"></video>`:''}<span class="pl"></span></div><div class="info"><p class="mono sector">Nº${String(i+1).padStart(2,'0')} · ${v.sec}</p><p class="arg">${v.arg}</p>${v.yt?`<a class="btn acid yt" href="${v.yt}" target="_blank" rel="noopener">Watch the full one on YouTube &nearr;</a>`:''}</div>`;
+ const vid=c.querySelector('video');if(vid){c.addEventListener('mouseenter',()=>{vid.play().then(()=>c.classList.add('playing')).catch(()=>{})});c.addEventListener('mouseleave',()=>{vid.pause();c.classList.remove('playing')})}
+ c.addEventListener('click',e=>{if(e.target.closest('a'))return;if(v.clip)openVideo(v);else if(v.yt)open(v.yt)});g.append(c);io.observe(c)})})();
+
+/* modal */
+function openVideo(v){if(!v.clip){location.hash='videos';return}const m=$('#modal'),mv=$('#mv');mv.src=`assets/clips/${v.k}.mp4`;mv.muted=false;$('#mc').textContent=v.sec;m.classList.add('open');mv.play().catch(()=>{})}
+const closeM=()=>{const mv=$('#mv');mv.pause();mv.removeAttribute('src');mv.load();$('#modal').classList.remove('open')};
+$('#mx').onclick=closeM;$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeM()});addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+
+/* notes board */
+(()=>{const b=$('#board');const pos=[[2,4,-4],[34,0,3],[66,8,-2],[10,46,2],[42,52,-3],[72,48,4],[24,26,1]];
+ NOTES.forEach((n,i)=>{const s=document.createElement('div');s.className='sticky '+n.c;const p=pos[i];s.style.left=p[0]+'%';s.style.top=p[1]+'%';s.style.transform=`rotate(${p[2]}deg)`;s.style.zIndex=i+1;
+  s.innerHTML=`<q>${n.q}</q><span class="mono who"><b>${n.n}</b> · ${n.r}</span>`;b.append(s);
+  let sx,sy,ox,oy,z=20;s.addEventListener('pointerdown',e=>{if(innerWidth<=1000)return;s.setPointerCapture(e.pointerId);s.classList.add('drag');sx=e.clientX;sy=e.clientY;ox=s.offsetLeft;oy=s.offsetTop;s.style.zIndex=++window.__z||(window.__z=30)});
+  s.addEventListener('pointermove',e=>{if(!s.classList.contains('drag'))return;const bw=b.clientWidth-s.offsetWidth,bh=b.clientHeight-s.offsetHeight;s.style.left=Math.max(0,Math.min(bw,ox+e.clientX-sx))+'px';s.style.top=Math.max(-20,Math.min(bh,oy+e.clientY-sy))+'px';s.style.transform=`rotate(${(e.clientX-sx)/40}deg)`});
+  s.addEventListener('pointerup',()=>{s.classList.remove('drag');s.style.transform=`rotate(${p[2]}deg)`})})})();
+
+/* id card */
+(()=>{const c=$('#idcard');const t=()=>c.classList.toggle('flip');c.addEventListener('click',t);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})})();
+
+/* copy email */
+$('#copy').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('sendtohola@gmail.com')}catch(_){location.href='mailto:sendtohola@gmail.com'}b.classList.add('done');setTimeout(()=>b.classList.remove('done'),1600)});
+
 </script>
-
 </body>
 </html>
