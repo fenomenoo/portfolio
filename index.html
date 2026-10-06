@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gbolahan Lawal · GTM engineer, AI-native builder</title>
-<meta name="description" content="GTM engineer and AI-native builder. I find your next customers, and show you who I threw out.">
-<meta property="og:title" content="Gbolahan Lawal · GTM engineer, AI-native builder">
+<title>Gbolahan Lawal · GTM engineer, automation, AI-native builder</title>
+<meta name="description" content="GTM engineer, automation builder and AI-native builder. I find your next customers, and show you who I threw out.">
+<meta property="og:title" content="Gbolahan Lawal · GTM engineer, automation, AI-native builder">
 <meta property="og:description" content="I find your next customers, and show you who I threw out.">
 <meta property="og:image" content="assets/stills/aba.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2308261A'/><text x='32' y='44' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%232BE37A'>G.</text></svg>">
@@ -205,7 +205,7 @@ h1.in .w>span{transform:none}
 .dark .sec-head .mono b{color:var(--acid)}
 .dark .lede{color:#A9C2B1}
 .videos{padding-top:130px;padding-bottom:130px}
-.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .vcard{position:relative;cursor:pointer;background:var(--deep2);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--lineD);transition:transform .5s var(--ease)}
 .vcard:hover{transform:translateY(-6px) rotate(-.6deg)}
 .vcard:nth-child(even):hover{transform:translateY(-6px) rotate(.6deg)}
@@ -280,6 +280,7 @@ h1.in .w>span{transform:none}
 .idcard .rec b{font-family:var(--mono);font-size:14px}
 .idcard .back small{margin-top:auto;font-size:12px;color:var(--ink2);line-height:1.45}
 .about-copy p{font-size:20px;line-height:1.55;margin-bottom:20px;max-width:32em}
+.about-copy p.mono{font-size:11.5px;line-height:1.4}
 .about-copy p.dim{color:var(--ink2);font-size:17px}
 .timeline{margin-top:40px;border-top:1.5px solid var(--ink)}
 .tl{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -330,10 +331,45 @@ h1.in .w>span{transform:none}
 [data-theme=combo] .limit{border-left-color:var(--coral)}
 [data-theme=combo] .modal{background:rgba(9,40,29,.88)}
 
+/* ---------- mobile menu ---------- */
+.burger{display:none;width:46px;height:46px;border-radius:50%;background:var(--ink);position:relative;flex:none;z-index:101}
+.burger span{position:absolute;left:14px;right:14px;height:2px;background:var(--acid);transition:transform .35s var(--ease),top .35s var(--ease)}
+.burger span:first-child{top:18px}.burger span:last-child{top:26px}
+.burger[aria-expanded=true]{background:var(--acid)}
+.burger[aria-expanded=true] span{background:var(--ink)}
+.burger[aria-expanded=true] span:first-child{top:22px;transform:rotate(45deg)}
+.burger[aria-expanded=true] span:last-child{top:22px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:99;background:var(--deep);padding:110px var(--pad) 40px;display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow-y:auto}
+.mnav.open{opacity:1;visibility:visible}
+.mnav a:not(.btn){display:flex;align-items:baseline;gap:14px;color:#F3EBD8;text-decoration:none;font-weight:900;font-size:clamp(34px,9vw,52px);letter-spacing:-.03em;line-height:1.15;padding:8px 0;border-bottom:1px solid var(--lineD);transform:translateY(16px);opacity:0;transition:transform .5s var(--ease),opacity .5s}
+.mnav a i{font-style:normal;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--lilac);letter-spacing:.08em}
+.mnav.open a{transform:none;opacity:1}
+.mnav a:nth-child(2){transition-delay:.04s}.mnav a:nth-child(3){transition-delay:.08s}.mnav a:nth-child(4){transition-delay:.12s}.mnav a:nth-child(5){transition-delay:.16s}.mnav a:nth-child(6){transition-delay:.2s}
+.mnav .btn{margin-top:28px;align-self:flex-start;font-size:15px;padding:16px 24px}
+body.menu-open{overflow:hidden}
+body.menu-open header.nav{background:transparent;box-shadow:none;backdrop-filter:none}
+body.menu-open .mark{color:#F3EBD8}
+/* ---------- visitor toast ---------- */
+.vtoast{position:fixed;left:16px;bottom:16px;z-index:150;width:min(300px,calc(100vw - 32px));background:var(--paper);color:var(--ink);border-radius:12px;padding:16px 44px 16px 18px;box-shadow:0 24px 40px -18px rgba(8,38,26,.55),0 0 0 1px var(--line);transform:translateY(160%);transition:transform .7s var(--ease)}
+.vtoast.show{transform:none}
+.vtoast .mono{display:block;font-size:10px;color:var(--ink3);margin-bottom:6px}
+.vtoast b{display:block;font-weight:900;font-size:22px;letter-spacing:-.02em;line-height:1.1}
+.vtoast b span{font-family:var(--serif,inherit);font-weight:400;background:linear-gradient(var(--acid),var(--acid)) no-repeat 0 88%/100% 36%}
+.vtoast small{display:block;margin-top:6px;color:var(--ink2);font-size:13.5px}
+.vtoast button{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;font-size:18px;color:var(--ink2)}
+.vtoast button:hover{background:var(--bg)}
+
 @media (max-width:1000px){
  .hero,.cut-grid,.about-grid,.refuse{grid-template-columns:1fr}
  .links{display:none}
+ .burger{display:block}
+ .nav .btn{display:none}
  .vgrid{grid-template-columns:1fr 1fr}
+ .hero{min-height:auto;padding-top:24px;gap:10px}
+ .desk{height:520px;min-height:0;margin-top:10px}
+ .cut,.videos,.notes,.about,.contact{padding-top:90px;padding-bottom:90px}
+ .work,.how{padding-bottom:90px}
+ .refuse{gap:24px}
  .vcard.wide{grid-column:span 2}
  .tickets{grid-template-columns:1fr}
  .idcard{position:relative;top:0;margin:0 auto}
@@ -341,7 +377,45 @@ h1.in .w>span{transform:none}
  .sticky{position:relative;left:auto!important;top:auto!important;width:min(340px,100%)}
 }
 @media (max-width:640px){
- .strip span:nth-child(2){display:none}
+ .strip span.works{display:none}
+ .strip{font-size:9.5px}
+ body{font-size:16px}
+ h1{font-size:clamp(40px,11.5vw,56px)}
+ h2{font-size:clamp(34px,9.5vw,46px)}
+ .hero .sub{font-size:16.5px}
+ .hero .ctas .btn{flex:1;justify-content:center}
+ .desk{height:440px}
+ .print{width:min(240px,64vw);margin-left:calc(min(240px,64vw)/-2);top:40%}
+ .note{width:min(240px,72vw);right:2px;bottom:0;padding:14px 16px 12px}
+ .note q{font-size:14px;min-height:0}
+ .marquee .track{gap:28px;padding:14px 0}.marquee span{gap:28px;font-size:12px}
+ .sec-head{margin-bottom:28px}
+ .term{font-size:11.2px;line-height:1.7}
+ .term-body{padding:16px 14px 18px;min-height:300px}
+ .facts div{font-size:15px}
+ .limit{font-size:15.5px}
+ .rail-ctl{width:100%;justify-content:space-between}
+ .case{width:86vw}
+ .thumb{height:220px}
+ .case h3{font-size:23px}
+ .vcard.wide .info{padding:20px}
+ .vcard.wide .arg{font-size:20px}
+ .ticket{padding:22px 18px 20px 44px}
+ .ticket h3{font-size:23px}
+ .refuse li{grid-template-columns:36px 1fr;font-size:16px}
+ .idcard{height:420px}
+ .idcard .nm{font-size:50px}
+ .about-copy p{font-size:18px}
+ .contact h2{font-size:clamp(46px,14vw,70px)}
+ .contact .row .btn{width:100%;justify-content:center}
+ .socials{flex-direction:column}
+ .vtoast{bottom:12px;left:12px}
+ .desk-only{display:none}
+ .about-copy p.mono{font-size:11px}
+ .socials a{display:inline-block;padding:12px 0}
+ .socials nav{gap:6px 22px}
+ .case .go{padding-top:16px;padding-bottom:6px}
+ .term-foot a.mono{padding:10px 0}
  .vgrid{grid-template-columns:1fr}
  .vcard.wide{grid-column:auto;grid-template-columns:1fr}
  .more-row{grid-template-columns:1fr}
@@ -357,19 +431,21 @@ h1.in .w>span{transform:none}
 <body>
 <div class="grain"></div>
 
-<div class="wrap strip mono"><span><span class="pulse"></span>STATUS:: <b>OPEN TO GTM ROLES + PROJECTS</b></span><span>LATEST:: <b>npi-triggers, Oct 2026</b></span><span>WORKS:: <b>REMOTE</b></span></div>
+<div class="wrap strip mono"><span><span class="pulse"></span>STATUS:: <b>OPEN TO GTM ROLES + PROJECTS</b></span><span class="vc">VISITORS:: <b id="vTotal">&middot;&middot;&middot;</b> &nbsp;·&nbsp; YOU:: <b>Nº <span id="vYou">&middot;&middot;&middot;</span></b></span><span class="works">WORKS:: <b>REMOTE</b></span></div>
 <header class="wrap nav" id="nav">
  <a class="mark" href="#top">Gbolahan<i>.</i></a>
  <nav class="links"><a href="#cut">The cut list</a><a href="#work">Work</a><a href="#videos">Videos</a><a href="#notes">Notes</a><a href="#how">How I work</a><a href="#about">About</a></nav>
  <a class="btn" href="#contact">Send me your market</a>
+ <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
 </header>
+<nav class="mnav" id="mnav" aria-label="Menu"><a href="#cut"><i>01</i>The cut list</a><a href="#work"><i>02</i>Work</a><a href="#videos"><i>03</i>Videos</a><a href="#notes"><i>04</i>Notes</a><a href="#how"><i>05</i>How I work</a><a href="#about"><i>06</i>About</a><a class="btn acid" href="#contact">Send me your market &rarr;</a></nav>
 
 <main id="top">
 <!-- HERO -->
 <section class="wrap hero">
  <div class="dots"></div>
  <div style="position:relative">
-  <p class="mono kicker">OWNER:: <b>GBOLAHAN LAWAL</b> &nbsp;·&nbsp; ROLE:: <b>GTM ENGINEER · AI-NATIVE BUILDER</b></p>
+  <p class="mono kicker">OWNER:: <b>GBOLAHAN LAWAL</b> &nbsp;·&nbsp; ROLE:: <b>GTM ENGINEER · AUTOMATION · AI-NATIVE BUILDER</b></p>
   <h1 id="h1">I find your next customers, and show you who I <span class="hl" id="h1hl">threw out.</span></h1>
   <p class="sub">I research the market, verify every contact one at a time, write the outreach, and build the systems that run it. Every list comes with the names I removed and the reason beside each one.</p>
   <div class="ctas"><a class="btn" href="#work">See the work <span class="arr">&rarr;</span></a><a class="btn ghost" href="#videos">Watch a pitch video</a></div>
@@ -388,7 +464,7 @@ h1.in .w>span{transform:none}
  <div class="cut-grid">
   <div class="reveal">
    <div class="sec-head" style="margin-bottom:0"><div><p class="mono">SECTION:: <b>01 / THE CUT LIST</b></p><h2>Most tools answer who exists. Mine answers <span class="hl">who changed.</span></h2></div></div>
-   <p class="lede" style="margin-top:26px">npi-triggers pulls the federal US provider registry and finds healthcare organisations that were just created, or whose record just moved. Free, public, standard library only. Run it on the right.</p>
+   <p class="lede" style="margin-top:26px">npi-triggers pulls the federal US provider registry and finds healthcare organisations that were just created, or whose record just moved. Free, public, standard library only. Run it yourself.</p>
    <div class="facts">
     <div><b>Source</b>CMS NPPES, the federal public record of every US provider organisation</div>
     <div><b>Signal</b>Two dates on every record: when it was created, and when it last changed</div>
@@ -484,7 +560,7 @@ h1.in .w>span{transform:none}
 <section class="dark" id="videos">
  <div class="dots"></div>
  <div class="wrap videos">
-  <div class="sec-head reveal"><div><p class="mono">SECTION:: <b>03 / PITCH VIDEOS</b></p><h2>Each one argues one idea, and names who it cuts.</h2></div><p class="lede">Eleven made in 2026, each for one company. Research, script, design, code, sound and render all mine. Hover to preview, click to watch with sound.</p></div>
+  <div class="sec-head reveal"><div><p class="mono">SECTION:: <b>03 / PITCH VIDEOS</b></p><h2>Each one argues one idea, and names who it cuts.</h2></div><p class="lede">Fourteen made in 2026, each for one company. Research, script, design, code, sound and render all mine. Hover to preview. Click or tap to watch with sound.</p></div>
   <div class="vgrid" id="vgrid"></div>
   <p class="mono vnote">Built as HTML and CSS scenes, rendered headless through a Node pipeline I wrote.</p>
  </div>
@@ -493,7 +569,7 @@ h1.in .w>span{transform:none}
 <!-- NOTES -->
 <section class="wrap notes" id="notes">
  <div class="dots"></div>
- <div class="sec-head reveal" style="position:relative"><div><p class="mono">SECTION:: <b>04 / NOTES</b></p><h2>What people wrote back.</h2></div><p class="lede">Quoted word for word from their emails. Drag them around.</p></div>
+ <div class="sec-head reveal" style="position:relative"><div><p class="mono">SECTION:: <b>04 / NOTES</b></p><h2>What people wrote back.</h2></div><p class="lede">Quoted word for word from their emails.<span class="desk-only"> Drag them around.</span></p></div>
  <div class="board" id="board"></div>
 </section>
 
@@ -524,13 +600,13 @@ h1.in .w>span{transform:none}
  <div class="about-grid">
   <div class="idcard reveal" id="idcard" role="button" tabindex="0" aria-label="Flip the ID card">
    <div class="in">
-    <div class="face front"><div class="hole"></div><div class="mono" style="display:flex;justify-content:space-between"><span>ID:: Nº0001</span><span>REMOTE</span></div><div class="nm">Gbolahan<br>Lawal.</div><div class="rl">GTM engineer<br>AI-native builder</div><div class="bc"></div><div class="flip-hint">tap to flip it</div></div>
+    <div class="face front"><div class="hole"></div><div class="mono" style="display:flex;justify-content:space-between"><span>ID:: Nº0001</span><span>REMOTE</span></div><div class="nm">Gbolahan<br>Lawal.</div><div class="rl">GTM engineer<br>Automation<br>AI-native builder</div><div class="bc"></div><div class="flip-hint">tap to flip it</div></div>
     <div class="face back"><h4>RECORD:: CAREER TO DATE</h4>
      <div class="rec"><span>Leads sourced</span><b>2,000+</b></div>
      <div class="rec"><span>Meetings booked</span><b>90+</b></div>
      <div class="rec"><span>Deals closed</span><b>37</b></div>
      <div class="rec"><span>Companies screened by a CRM I built</span><b>90,000+</b></div>
-     <div class="rec"><span>Pitch videos made in 2026</span><b>11</b></div>
+     <div class="rec"><span>Pitch videos made in 2026</span><b>14</b></div>
      <small>Self-reported totals across outbound for SaaS, finance and media clients. References available on request.</small></div>
    </div>
   </div>
@@ -562,23 +638,25 @@ h1.in .w>span{transform:none}
    <a class="btn ghost" href="mailto:sendtohola@gmail.com?subject=My%20market">Write an email &rarr;</a>
    <a class="btn ghost" href="assets/gbolahan-lawal-cv.pdf" target="_blank" rel="noopener">Download CV &darr;</a>
   </div>
-  <div class="socials"><nav><a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn &nearr;</a><a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub &nearr;</a><a href="https://www.youtube.com/@hola_gmi" target="_blank" rel="noopener">YouTube &nearr;</a><a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork &nearr;</a></nav><span class="mono" style="font-size:11px">Designed and coded by hand · Gbolahan Lawal, 2026</span></div>
+  <div class="socials"><nav><a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn &nearr;</a><a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub &nearr;</a><a href="https://www.youtube.com/@hola_gmi" target="_blank" rel="noopener">YouTube &nearr;</a><a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork &nearr;</a></nav><span class="mono" style="font-size:11px"><span id="fVis"></span>Designed and coded by hand · Gbolahan Lawal, 2026</span></div>
  </div>
 </section>
 </main>
 
+<div class="vtoast" id="vtoast" role="status"><button aria-label="Close" id="vtx">&times;</button><span class="mono">VISITOR LOG</span><b>You're visitor Nº <span id="tYou"></span></b><small>of <span id="tTotal"></span> so far. Thanks for stopping by.</small></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true"><button class="x" id="mx" aria-label="Close">&times;</button><video id="mv" controls playsinline></video><p class="mono cap" id="mc"></p></div>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const VIDEOS=[
  {k:"aba",sec:"US healthcare billing",arg:"789 organisations pulled from a federal registry, cut to four on screen. The removals are held longest.",clip:1,wide:1,yt:"https://youtu.be/4Fl2Hf-ClKA"},
+ {k:"first",sec:"Last-mile delivery",arg:"Which European country to launch in first. Norway, Italy and Greece come off the map, each with the reason on screen.",clip:1},
  {k:"caddi",sec:"Industrial drawing data",arg:"Fifteen companies. Three crossed off, with the trigger and the date on each one left.",clip:1},
  {k:"oximy",sec:"Enterprise AI governance",arg:"Demand you can't sort isn't demand yet. Ends on a board: revive, pass, block.",clip:1},
  {k:"stable",sec:"Business-address infrastructure",arg:"Cuts a company from its own target list, because it was already a customer.",clip:1},
  {k:"remit",sec:"Physical therapy billing",arg:"31 new organisations, 22 long-running ones that just changed. Who to call this week.",clip:1},
  {k:"sponsor",sec:"Visa-sponsored hiring",arg:"Somebody chose to put it there. Reading one line in a job post as a buying signal.",clip:1},
- {k:"ordo",sec:"Consumer AI hardware",arg:"A go-to-market plan shown as a video instead of described in an email.",clip:0}
+ {k:"ordo",sec:"Consumer AI hardware",arg:"A go-to-market plan shown as a video instead of described in an email.",clip:1}
 ];
 const NOTES=[
  {q:"THANK YOU for the incredible work you've been doing. We are grateful and impressed!",n:"Erik Weiner",r:"Loud Giant",c:"a"},
@@ -607,7 +685,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 $$('.reveal').forEach(r=>io.observe(r));
 
 /* hero print stack */
-(()=>{const desk=$('#desk');const order=[0,1,2,4,3,5,6];
+(()=>{const desk=$('#desk');const order=[0,1,2,3,5,4,6,7];
  const prints=order.map(i=>{const v=VIDEOS[i];const f=document.createElement('figure');f.className='print';
   f.innerHTML=`<span class="tape"></span><img src="assets/stills/${v.k}.jpg" alt="Still from a pitch video, ${v.sec}"><span class="play"></span><figcaption class="mono"><span>Nº${String(i+1).padStart(2,'0')}</span><span>${v.sec}</span></figcaption>`;
   f.addEventListener('click',()=>{if(f===stack[0])openVideo(v)});desk.insertBefore(f,$('#note'));return f});
@@ -668,6 +746,25 @@ $('#mx').onclick=closeM;$('#modal').addEventListener('click',e=>{if(e.target.id=
 
 /* id card */
 (()=>{const c=$('#idcard');const t=()=>c.classList.toggle('flip');c.addEventListener('click',t);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})})();
+
+/* mobile menu */
+(()=>{const b=$('#burger'),m=$('#mnav');const set=o=>{b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');m.classList.toggle('open',o);document.body.classList.toggle('menu-open',o)};
+ b.addEventListener('click',()=>set(b.getAttribute('aria-expanded')!=='true'));$$('#mnav a').forEach(a=>a.addEventListener('click',()=>set(false)));addEventListener('keydown',e=>{if(e.key==='Escape')set(false)})})();
+
+/* visitor counter: one row per browser in Supabase, counted once */
+(async()=>{const fmt=n=>Number(n).toLocaleString('en-US');const local=/^(localhost|127\.|$)/.test(location.hostname)&&!/counter/.test(location.search);
+ const uuid=()=>crypto.randomUUID?crypto.randomUUID():([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16));
+ let id=null;try{id=localStorage.getItem('gl_vid');if(!id){id=uuid();localStorage.setItem('gl_vid',id)}}catch(_){id=uuid()}
+ if(local){$('#vTotal').textContent='local';$('#vYou').textContent='0';return}
+ try{const r=await fetch('https://iqdbgvpidihvrstzboim.supabase.co/rest/v1/rpc/register_visit',{method:'POST',headers:{'apikey':'sb_publishable_Yz27zqhuB8RLCMFE83OCEg__F4sSyFb','Content-Type':'application/json'},body:JSON.stringify({p_visitor:id})});
+  if(!r.ok)throw 0;const d=await r.json();
+  const count=(el,to)=>{let t0=null;const run=ts=>{t0??=ts;const k=Math.min(1,(ts-t0)/1200);el.textContent=fmt(Math.round(to*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(run)};requestAnimationFrame(run)};
+  count($('#vTotal'),d.total);count($('#vYou'),d.you);
+  $('#tYou').textContent=fmt(d.you);$('#tTotal').textContent=fmt(d.total);$('#fVis').textContent=`You're visitor Nº ${fmt(d.you)} of ${fmt(d.total)} · `;
+  let seen=false;try{seen=sessionStorage.getItem('gl_toast')}catch(_){}
+  if(!seen){const t=$('#vtoast');setTimeout(()=>t.classList.add('show'),2600);setTimeout(()=>t.classList.remove('show'),11000);try{sessionStorage.setItem('gl_toast','1')}catch(_){}}
+ }catch(_){$('.vc').style.visibility='hidden'}
+ $('#vtx').onclick=()=>$('#vtoast').classList.remove('show')})();
 
 /* copy email */
 $('#copy').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('sendtohola@gmail.com')}catch(_){location.href='mailto:sendtohola@gmail.com'}b.classList.add('done');setTimeout(()=>b.classList.remove('done'),1600)});
