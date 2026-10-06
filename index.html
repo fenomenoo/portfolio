@@ -359,6 +359,14 @@ body.menu-open .mark{color:#F3EBD8}
 .vtoast button{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;font-size:18px;color:var(--ink2)}
 .vtoast button:hover{background:var(--bg)}
 
+/* ---------- bottom thank-you ---------- */
+.thanks{position:relative;max-width:440px;margin:64px auto 10px;background:#F3EBD8;color:var(--ink);padding:26px 28px 22px;border-radius:3px;box-shadow:0 30px 50px -26px rgba(0,0,0,.7);opacity:0;transform:translateY(50px) rotate(5deg);transition:opacity .8s var(--ease),transform 1s cubic-bezier(.34,1.4,.64,1)}
+.thanks.in{opacity:1;transform:rotate(-2deg)}
+.thanks .tape{position:absolute;top:-11px;left:50%;margin-left:-40px;width:80px;height:22px;background:rgba(226,184,92,.6);transform:rotate(-3deg)}
+.thanks .mono{font-size:10px;color:var(--ink3);margin-bottom:10px}
+.thanks q{display:block;font-family:var(--hand);font-size:20px;line-height:1.4;quotes:none}
+.thanks .sig{display:block;margin-top:14px;text-align:right;font-family:var(--hand);font-size:18px;color:var(--coral,#E5674B)}
+
 @media (max-width:1000px){
  .hero,.cut-grid,.about-grid,.refuse{grid-template-columns:1fr}
  .links{display:none}
@@ -410,6 +418,8 @@ body.menu-open .mark{color:#F3EBD8}
  .contact .row .btn{width:100%;justify-content:center}
  .socials{flex-direction:column}
  .vtoast{bottom:12px;left:12px}
+ .thanks{margin-top:48px;padding:22px 20px 18px}
+ .thanks q{font-size:18px}
  .desk-only{display:none}
  .about-copy p.mono{font-size:11px}
  .socials a{display:inline-block;padding:12px 0}
@@ -639,6 +649,7 @@ body.menu-open .mark{color:#F3EBD8}
    <a class="btn ghost" href="assets/gbolahan-lawal-cv.pdf" target="_blank" rel="noopener">Download CV &darr;</a>
   </div>
   <div class="socials"><nav><a href="https://www.linkedin.com/in/gbolahan-lawal-112167128" target="_blank" rel="noopener">LinkedIn &nearr;</a><a href="https://github.com/fenomenoo" target="_blank" rel="noopener">GitHub &nearr;</a><a href="https://www.youtube.com/@hola_gmi" target="_blank" rel="noopener">YouTube &nearr;</a><a href="https://www.upwork.com/freelancers/~019f2dfb9a2ecc7121" target="_blank" rel="noopener">Upwork &nearr;</a></nav><span class="mono" style="font-size:11px"><span id="fVis"></span>Designed and coded by hand · Gbolahan Lawal, 2026</span></div>
+  <div class="thanks" id="thanks" aria-live="polite"><span class="tape"></span><p class="mono" id="thxTag">END OF FILE</p><q>You made it all the way to the bottom. Thank you for reading this far.</q><span class="sig">Gbolahan</span></div>
  </div>
 </section>
 </main>
@@ -765,6 +776,11 @@ $('#mx').onclick=closeM;$('#modal').addEventListener('click',e=>{if(e.target.id=
   if(!seen){const t=$('#vtoast');setTimeout(()=>t.classList.add('show'),2600);setTimeout(()=>t.classList.remove('show'),11000);try{sessionStorage.setItem('gl_toast','1')}catch(_){}}
  }catch(_){$('.vc').style.visibility='hidden'}
  $('#vtx').onclick=()=>$('#vtoast').classList.remove('show')})();
+
+/* thank everyone who reaches the bottom */
+(()=>{const t=$('#thanks');new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;
+ const n=$('#tYou')&&$('#tYou').textContent;if(n)$('#thxTag').textContent=`END OF FILE · VISITOR Nº ${n}`;
+ t.classList.add('in');o.disconnect()}),{threshold:.6}).observe(t)})();
 
 /* copy email */
 $('#copy').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('sendtohola@gmail.com')}catch(_){location.href='mailto:sendtohola@gmail.com'}b.classList.add('done');setTimeout(()=>b.classList.remove('done'),1600)});
