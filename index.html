@@ -438,6 +438,7 @@ body.menu-open .mark{color:#F3EBD8}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}h1 .w>span{transform:none}}
 </style>
+<link rel="stylesheet" href="assets/explore.css">
 </head>
 <body>
 <div class="grain"></div>
@@ -726,7 +727,7 @@ $$('.reveal').forEach(r=>io.observe(r));
 (()=>{const r=$('#rail'),cards=$$('#rail .case');const step=()=>cards[0].getBoundingClientRect().width+22;
  $('#next').onclick=()=>r.scrollBy({left:step(),behavior:'smooth'});$('#prev').onclick=()=>r.scrollBy({left:-step(),behavior:'smooth'});
  const upd=()=>{const i=Math.min(cards.length,Math.round(r.scrollLeft/step())+1);$('#count').textContent=String(i).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0')};r.addEventListener('scroll',upd,{passive:true});upd();
- let down=false,sx=0,sl=0,moved=0;r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft;moved=0});
+ let down=false,sx=0,sl=0,moved=0;r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||r.classList.contains('explore-grid'))return;down=true;sx=e.clientX;sl=r.scrollLeft;moved=0});
  addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.abs(dx);if(moved>5)r.classList.add('dragging');r.scrollLeft=sl-dx});
  addEventListener('pointerup',()=>{if(!down)return;down=false;setTimeout(()=>r.classList.remove('dragging'),0);const s=step();r.scrollTo({left:Math.round(r.scrollLeft/s)*s,behavior:'smooth'})});
  r.addEventListener('click',e=>{if(moved>5){e.preventDefault();e.stopPropagation()}},true)})();
@@ -787,5 +788,6 @@ $('#mx').onclick=closeM;$('#modal').addEventListener('click',e=>{if(e.target.id=
 $('#copy').addEventListener('click',async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('sendtohola@gmail.com')}catch(_){location.href='mailto:sendtohola@gmail.com'}b.classList.add('done');setTimeout(()=>b.classList.remove('done'),1600)});
 
 </script>
+<script src="assets/explore.js"></script>
 </body>
 </html>
